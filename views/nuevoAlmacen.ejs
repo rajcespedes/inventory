@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inventario</title>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/app.css">
+	<script src="https://code.jquery.com/jquery-3.5.0.slim.min.js" integrity="sha256-MlusDLJIP1GRgLrOflUQtshyP0TwT/RHXsI1wWGnQhs=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+	<div class="row container">
+		<div class="col-4">
+			<ul class="nav flex-column">
+			  <li class="nav-item">
+			    <a class="nav-link active" href="#">Active</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="#">Link</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="#">Link</a>
+			  </li>
+			</ul>
+		</div>
+		<div class="col-4">
+			<form>
+				<h1>Crear almacén</h1>
+			  <div class="form-group">
+			    <label for="nombre">Nombre</label>
+			    <input id="nombre" type="text" class="form-control" placeholder="Nombre" name="almacen[nombre]">
+			  </div>
+  			  <div class="form-group">
+			    <label for="ubicacion">Ubicación</label>
+			    <input id="ubicacion" type="text" class="form-control" placeholder="Calle, No., Sector, Provincia" name="almacen[ubicacion]">
+			  </div>
+			  <div class="form-group">
+			    <label for="capacidad">Capacidad</label>
+			    <input id="capacidad" type="text" class="form-control" placeholder="Capacidad" name="almacen[capacidad]">
+			  </div>
+			  <button type="submit" class="btn btn-primary">Guardar</button>
+			</form>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>
