@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 var almacenSchema = new mongoose.Schema({
 	nombre: String,
-	ubicaciion: String,
+	ubicacion: String,
 	capacidad: Number,
 	articulo: {
 		type: mongoose.Schema.Types.ObjectId,

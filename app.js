@@ -1,6 +1,9 @@
-const 	express 	= require('express'),
-		app 		= express(),
-		mongoose 	= require('mongoose');
+const 	express 		= require('express'),
+		app 			= express(),
+		mongoose 		= require('mongoose'),
+		inventoryRoutes = require('./routes/inventory');
+		bodyParser		= require('body-parser'),
+		methodOverride 	= require('method-override');
 
 
 var Articulo = require('./models/articulo'),
@@ -21,6 +24,12 @@ app.listen(process.env.PORT || 3000, process.env.IP);
 app.set('view engine','ejs');
 
 app.use(express.static('public'));
+
+app.use(inventoryRoutes);
+
+app.use(bodyParser.urlencoded({extende: true}));
+
+app.use(methodOverride("_method"));
 
 app.get('/', (req,res) => res.render('home'));
 

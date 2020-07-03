@@ -5,37 +5,33 @@
 	
   <thead>
   	<tr>
-  		<th id="no-border" class="pl-0 pb-1"><a href="/contacts/new" class="btn btn-success">Crear contacto</a></th>
+  		<th id="no-border" class="pl-0 pb-1"><a href="/almacen/new" class="btn btn-success">Crear almacen</a></th>
   	</tr>
     <tr>
       <th scope="col">Nombre</th>
-      <th scope="col">Apellido</th>
-      <th scope="col">Número</th>
-      <th scope="col">e-Mail</th>
-      <th scope="col">Grupo</th>
+      <th scope="col">Ubicación</th>
+      <th scope="col">Capacidad</th>
       <th scope="col" colspan="2">Acción</th>
     </tr>
   </thead>
   <tbody>
-  	<!-- <% contact.forEach(function(contact){ %> -->
+  	<% almacen.forEach(function(almacen){ %>
     <tr>
-      	<!-- <td> <%= contact.name %></td> -->
-      	<!-- <td><%= contact.lastname %></td> -->
-      	<!-- <td><%= contact.number %></td> -->
-      	<!-- <td><%= contact.email %></td> -->
-      	<!-- <td><%= contact.group.name %></td> -->
+      	<td> <%= almacen.nombre %></td>
+      	<td><%= almacen.ubicacion %></td>
+      	<td><%= almacen.capacidad %></td>
       	<td>
       		<div class="row">
-      			<a href="/contact/<%= contact._id %>/edit" class="btn btn-sm btn-info mr-1">Editar</a>
+      			<a href="/almacen/<%=almacen._id%>/edit" class="btn btn-sm btn-info mr-1">Editar</a>
 	      		<a href="#">
-	      			<form action="/contact/<%= contact._id %>?_method=DELETE" method="POST">
+	      			<form action="" method="POST">
 	    				<input class="btn btn-sm btn-danger" type="submit" value="Eliminar">
 	    			</form>
 	      		</a>      			
       		</div>      		
       	</td>
     </tr>
-  	  <!-- <% }); %> -->
+  	  <% }); %>
   </tbody>
 </table>
 
