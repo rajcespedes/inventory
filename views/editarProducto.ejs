@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inventario</title>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/app.css">
+	<script src="https://code.jquery.com/jquery-3.5.0.slim.min.js" integrity="sha256-MlusDLJIP1GRgLrOflUQtshyP0TwT/RHXsI1wWGnQhs=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+	<div class="row container">
+		<div class="col-4">
+			<ul class="nav flex-column">
+			  <li class="nav-item">
+			    <a class="nav-link active" href="#">Active</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="#">Link</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="#">Link</a>
+			  </li>
+			</ul>
+		</div>
+		<div class="col-4">
+			<form action="/producto/<%=producto._id%>?_method=PUT" method="POST">
+				<h1>Editar producto</h1>
+			  <div class="form-group">
+			    <label for="descripcion">Descripcion</label>
+			    <input id="descripcion" type="text" class="form-control" name="producto[descripcion]" value="<%= producto.descripcion %>">
+			  </div>
+  			  <div class="form-group">
+			    <label for="precioLista">Precio lista</label>
+			    <input id="precioLista" type="text" class="form-control" name="producto[precioLista]" value="<%= producto.precioLista %>">
+			  </div>
+			  <div class="form-group">
+			    <label for="precioXMayor">Precio al por mayor</label>
+			    <input id="precioXMayor" type="text" class="form-control" name="producto[precioXMayor]" value="<%= producto.precioXMayor %>">
+			  </div>
+			  <button type="submit" class="btn btn-primary">Guardar</button>
+			</form>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>

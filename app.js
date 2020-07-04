@@ -1,7 +1,8 @@
 const 	express 		= require('express'),
 		app 			= express(),
 		mongoose 		= require('mongoose'),
-		inventoryRoutes = require('./routes/inventory');
+		inventoryRoutes = require('./routes/inventory'),
+		productRoutes 	= require('./routes/productRoutes'),
 		bodyParser		= require('body-parser'),
 		methodOverride 	= require('method-override');
 
@@ -26,6 +27,8 @@ app.set('view engine','ejs');
 app.use(express.static('public'));
 
 app.use(inventoryRoutes);
+
+app.use(productRoutes);
 
 app.use(bodyParser.urlencoded({extende: true}));
 

@@ -17,12 +17,9 @@ router.post('/almacen', (req,res) => Almacen.create(req.body.almacen, (err,creat
 
 router.get('/almacen/:id/edit', (req,res) => Almacen.findById(req.params.id, (err,found) => !err ? res.render('editarAlmacen',{ almacen: found } ) : console.log(err)) );
 
-router.put('/almacen/:id', (req,res) => res.send('edit route')
+router.put('/almacen/:id', (req,res) => Almacen.findByIdAndUpdate(req.params.id,req.body.almacen,(err,edited) => !err ? res.redirect('/almacen') : console.log(err) ) );
 
-	// Almacen.findByIdAndUpdate(req.params.id,req.body.almacen,(err,edited) => !err ? res.redirect('/almacen') : console.log(err) )
-	);
-
-
+router.delete('/almacen/:id', (req,res) => Almacen.findByIdAndRemove(req.params.id, (err,deleted) => !err ? res.redirect('/almacen') : console.log(err)));
 
 // Almacen.remove({},(err,done) => console.log('removed') );
 

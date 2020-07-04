@@ -1,0 +1,38 @@
+<%- include('./partials/header') %>
+
+
+<table class="table table-striped container">
+	
+  <thead>
+  	<tr>
+  		<th id="no-border" class="pl-0 pb-1"><a href="/producto/new" class="btn btn-success">Crear producto</a></th>
+  	</tr>
+    <tr>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Precio lista</th>
+      <th scope="col">Precio venta</th>
+      <th scope="col">Precio al por mayor</th>
+      <th scope="col" colspan="2">Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% producto.forEach(function(producto){ %>
+    <tr>
+      	<td> <%= producto.descripcion %></td>
+      	<td><%= producto.precioLista %></td>
+        <td><%= producto.precioVenta %></td>
+        <td><%= producto.precioXMayor %></td>
+      	<td>
+      		<div class="row">
+      			<a href="/producto/<%=producto._id%>/edit" class="btn btn-sm btn-info mr-1">Editar</a>
+      			<form action="/producto/<%=producto._id%>?_method=DELETE" method="POST">
+	    				<input class="btn btn-sm btn-danger" type="submit" value="Eliminar">
+	    			</form>
+      		</div>      		
+      	</td>
+    </tr>
+  	  <% }); %>
+  </tbody>
+</table>
+
+

@@ -23,11 +23,10 @@
       	<td>
       		<div class="row">
       			<a href="/almacen/<%=almacen._id%>/edit" class="btn btn-sm btn-info mr-1">Editar</a>
-	      		<a href="#">
-	      			<form action="" method="POST">
+      			<form action="/almacen/<%=almacen._id%>?_method=DELETE" method="POST">
 	    				<input class="btn btn-sm btn-danger" type="submit" value="Eliminar">
 	    			</form>
-	      		</a>      			
+	      		
       		</div>      		
       	</td>
     </tr>
