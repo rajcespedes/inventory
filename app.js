@@ -3,6 +3,7 @@ const 	express 		= require('express'),
 		mongoose 		= require('mongoose'),
 		inventoryRoutes = require('./routes/inventory'),
 		productRoutes 	= require('./routes/productRoutes'),
+		articuloRoutes	= require('./routes/articuloRoutes'),
 		bodyParser		= require('body-parser'),
 		methodOverride 	= require('method-override');
 
@@ -29,6 +30,8 @@ app.use(express.static('public'));
 app.use(inventoryRoutes);
 
 app.use(productRoutes);
+
+app.use(articuloRoutes);
 
 app.use(bodyParser.urlencoded({extende: true}));
 

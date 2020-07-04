@@ -1,0 +1,41 @@
+<%- include('./partials/header') %>
+
+
+<table class="table table-striped container">
+	
+  <thead>
+  	<tr>
+  		<th id="no-border" class="pl-0 pb-1"><a href="/articulo/new" class="btn btn-success">Crear articulo</a></th>
+  	</tr>
+    <tr>
+      <th scope="col">Producto</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Precio venta</th>
+      <th scope="col">Precio al por mayor</th>
+      <th scope="col">Almacen</th>
+      <th scope="col">Fecha entrada</th>
+      <th scope="col" colspan="2">Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% articulo.forEach(function(articulo){ %>
+    <tr>
+      	<td><%= articulo.producto %></td>      	
+        <td><%= articulo.precioVenta %></td>
+        <td><%= articulo.precioXMayor %></td>
+        <td><%= articulo.almacen.nombre %></td>
+        <td><%= articulo.fechaEntrada %></td>
+      	<td>
+      		<div class="row">
+      			<a href="/articulo/<%=articulo._id%>/edit" class="btn btn-sm btn-info mr-1">Editar</a>
+      			<form action="/articulo/<%=articulo._id%>?_method=DELETE" method="POST">
+	    				<input class="btn btn-sm btn-danger" type="submit" value="Eliminar">
+	    			</form>
+      		</div>      		
+      	</td>
+    </tr>
+  	  <% }); %>
+  </tbody>
+</table>
+
+
