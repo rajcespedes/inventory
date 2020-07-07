@@ -4,7 +4,10 @@
 	<title>Inventario</title>
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/app.css">
-	
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>	
+	<script type="text/javascript" src="/jQueryFile.js"></script>
 </head>
 <body>
 
@@ -24,42 +27,54 @@
 		</div>
 		<div class="col-4">
 			<form action="/producto" method="POST">
-				<h1>Crear articulo</h1>
+			  <h1>Crear articulo</h1>
 			  <div class="form-group">
-			    <label for="descripcion">Descripcion</label>
-			    <input id="descripcion" type="text" class="form-control" placeholder="Descripcion" name="producto[descripcion]">
-			  </div>
+			  	<label for="producto">Producto</label>
+			  	<h1><%= producto %></h1>
+			  	<% var x = 0; %>
+		    	<select id="producto" class="btn btn-outline-secondary dropdown-toggle form-control col-5 dropdown" >
+		    		<% for (var i = 0; i < producto.length; i++) { %>
+		    			
+		    			<option><%= producto[i]['descripcion'] %></option>
+
+		    			<% x = i; %>
+
+		    		<% } %>
+		    		
+		    	</select>			  	
+			  </div>  			  
   			  <div class="form-group">
+  			  	<h1><%=  %></h1>
 			    <label for="precioLista">Precio lista</label>
-			    <input id="precioLista" type="text" class="form-control col-3" placeholder="$" name="producto[precioLista]">
+			    <fieldset disabled>
+			    <input id="precioLista" type="text" class="form-control col-3" value="<%= producto[x]['precioLista'] %>" name="producto[precioLista]">
+			    </fieldset>
 			  </div>
 			  <div class="form-group">
 			    <label for="precioVenta">Precio venta</label>
-			    <input id="precioVenta" type="text" class="form-control col-3" placeholder="$" name="producto[precioVenta]">
+			    <fieldset disabled>
+			    	<input id="precioVenta" type="text" class="form-control col-3" placeholder="$" name="producto[precioVenta]">
+			    </fieldset>
 			  </div>
 			  <div class="form-group">
 			    <label for="precioXMayor">Precio al por mayor</label>
-			    <input id="precioXMayor" type="text" class="form-control col-3" placeholder="$" name="producto[precioXMayor]">
+			    <fieldset disabled>
+			    	<input id="precioXMayor" type="text" class="form-control col-3" placeholder="$" name="producto[precioXMayor]">			    	
+			    </fieldset>			    
 			  </div>
-			  <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div role="separator" class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
-    </div>
-  </div>
-
-
-  <input type="text" class="form-control" aria-label="Text input with dropdown button">
-</div>
-			  <button type="submit" class="btn btn-primary">Guardar</button>
+			  <div class="form-group">
+			  	<label for="almacen">Almacen</label>
+		    	<select id="almacen" class="btn btn-outline-secondary dropdown-toggle form-control col-5 dropdown">
+		    		<% almacen.forEach ( function(almacen) { %>
+		    			<option><%= almacen.nombre %></option>	
+		    		<% } ); %>
+		    	</select>			  	
+			  </div>
+			  	
+			  	<button id="saveBtn" type="submit" class="btn btn-primary mt-3">Guardar</button>
 			</form>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.5.0.slim.min.js" integrity="sha256-MlusDLJIP1GRgLrOflUQtshyP0TwT/RHXsI1wWGnQhs=" crossorigin="anonymous"></script>
+	
 </body>
 </html>

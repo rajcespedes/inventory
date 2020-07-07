@@ -17,7 +17,12 @@
   <tbody>
   	<% almacen.forEach(function(almacen){ %>
     <tr>
-      	<td> <%= almacen.nombre %></td>
+        
+        <td>
+          <!-- <a href="#">  -->
+            <%= almacen.nombre %>
+            <!-- </a> -->
+        </td>
       	<td><%= almacen.ubicacion %></td>
       	<td><%= almacen.capacidad %></td>
       	<td>

@@ -7,6 +7,8 @@ const 	express 	= require('express'),
 
 router.use(methodOverride('_method'));
 
+var almacen = "just testing";
+
 router.use(bodyParser.urlencoded({extended: true}));
 
 router.get('/almacen',(req,res) => Almacen.find({}, (err,found) => !err ? res.render('almacenIndex',{almacen: found}) : console.log(err)));
