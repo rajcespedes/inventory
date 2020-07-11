@@ -20,7 +20,20 @@ router.put('/producto/:id', (req,res) => Producto.findByIdAndUpdate(req.params.i
 
 router.delete('/producto/:id', (req,res) => Producto.findByIdAndRemove(req.params.id, (err,deleted) => !err ? res.redirect('/producto') : console.log(err) ) );
 
-router.post('/producto', (req,res) => Producto.create(req.body.producto, (err,created) => !err ? res.redirect('/producto') : console.log(err)) );
+router.post('/producto', (req,res) => Producto.create(req.body.producto, function(err,created) {
+
+	if(!err) {
+		// console.log(created);
+		res.redirect('/producto');
+	} else {
+		console.log(err);
+	}
+
+} 
+
+// => !err ? res.redirect('/producto') : console.log(err)) 
+
+));
 
 
 

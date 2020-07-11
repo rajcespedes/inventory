@@ -29,25 +29,24 @@
 			<form action="/producto" method="POST">
 			  <h1>Crear articulo</h1>
 			  <div class="form-group">
-			  	<label for="producto">Producto</label>
-			  	<h1><%= producto %></h1>
-			  	<% var x = 0; %>
-		    	<select id="producto" class="btn btn-outline-secondary dropdown-toggle form-control col-5 dropdown" >
+			  	<label for="productoSeleccionado">Producto</label>
+
+		    	<select id="productoSeleccionado" class="btn btn-outline-secondary dropdown-toggle form-control col-5 dropdown" onchange="run(this.value);">
+		    		<option>Seleccione...</option>
 		    		<% for (var i = 0; i < producto.length; i++) { %>
 		    			
-		    			<option><%= producto[i]['descripcion'] %></option>
+		    			<option value="<%= i %>"><%= producto[i]['descripcion'] %></option>
 
-		    			<% x = i; %>
+
 
 		    		<% } %>
 		    		
 		    	</select>			  	
 			  </div>  			  
   			  <div class="form-group">
-  			  	<h1><%=  %></h1>
 			    <label for="precioLista">Precio lista</label>
 			    <fieldset disabled>
-			    <input id="precioLista" type="text" class="form-control col-3" value="<%= producto[x]['precioLista'] %>" name="producto[precioLista]">
+			    <input id="precioLista" type="text" class="form-control col-3" name="producto[precioLista]">
 			    </fieldset>
 			  </div>
 			  <div class="form-group">
@@ -77,4 +76,4 @@
 	</div>
 	
 </body>
-</html>
+</html

@@ -2,10 +2,19 @@
 
 function jQueryFile() {
 
-	console.log($('select').val());
+	// $('select').change( function() {
+	// 	alert($('select').val());
+	// });
+
 
 }
 
+
+function run(data) {
+	// console.log(data);
+
+
+}
 
 
 window.onload = function () {
