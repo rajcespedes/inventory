@@ -20,7 +20,7 @@
   <tbody>
   	<% articulo.forEach(function(articulo){ %>
     <tr>
-      	<td><%= articulo.producto %></td>      	
+      	<td><%= articulo.producto.descripcion %></td>      	
         <td><%= articulo.precioVenta %></td>
         <td><%= articulo.precioXMayor %></td>
         <td><%= articulo.almacen.nombre %></td>
