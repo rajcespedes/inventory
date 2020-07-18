@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 var articuloSchema = new mongoose.Schema({
 	cantidad: Number,
-	fechaEntrada: Date,
+	fechaEntrada: String,
 	estado: String,
 	producto: {
 		type: mongoose.Schema.Types.ObjectId,

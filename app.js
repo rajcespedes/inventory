@@ -5,12 +5,12 @@ const 	express 		= require('express'),
 		productRoutes 	= require('./routes/productRoutes'),
 		articuloRoutes	= require('./routes/articuloRoutes'),
 		bodyParser		= require('body-parser'),
-		methodOverride 	= require('method-override');
-
+		methodOverride 	= require('method-override'),
+		pedidoRoutes	= require('./routes/pedidoRoutes');
 
 var Articulo = require('./models/articulo'),
 	Producto = require('./models/producto'),
-	Pedido	= require('./models/almacen');
+	Almacen	= require('./models/almacen');
 
 
 mongoose.connect('mongodb://localhost:27017/inventory',{useNewUrlParser: true, useUnifiedTopology: true});
@@ -32,6 +32,8 @@ app.use(inventoryRoutes);
 app.use(productRoutes);
 
 app.use(articuloRoutes);
+
+app.use(pedidoRoutes);
 
 app.use(bodyParser.urlencoded({extende: true}));
 

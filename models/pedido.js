@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 var pedidoSchema = new mongoose.Schema({
 	cantidad: Number,
-	fecha: Date,
+	fecha: String,
 	articulo: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Articulo'

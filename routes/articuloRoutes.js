@@ -33,9 +33,7 @@ router.get('/articulo/new', function(req,res) {
 
 } );
 
-router.get('/articulo', (req,res) => Articulo.find({}).populate('producto').exec( (err,found) =>
-
-
+router.get('/articulo', (req,res) => Articulo.find({}).populate('producto').populate('almacen').exec( (err,found) =>
 
 	!err ? res.render('articuloIndex', {articulo: found}) : console.log(err) )
 
@@ -50,8 +48,50 @@ router.post('/articulo', (req,res) => Articulo.create(
 		estado: "Disponible",
 		producto: req.body.articulo['descripcion'],
 		almacen: req.body.articulo['almacen']
-	}, (err,added) => !err ? res.redirect('/articulo') : console.log(err)  )
+	}, (err,added) => !err ? res.redirect('/articulo') : console.log(err) )
 );
+
+var almacenHolder, productoHolder;
+
+
+router.get('/articulo/:id/edit', function(req,res) {
+
+	Almacen.find({},function(err,foundAlmacen) {
+
+		if(!err) {
+			almacenHolder = foundAlmacen;
+		} else {
+			console.log(err);
+		}
+
+	});
+
+	Producto.find({},function(err,foundProducto) {
+
+		if(!err) {
+			productoHolder = foundProducto;
+		} else {
+			console.log(err);
+		}
+
+	});
+
+
+	Articulo.findById(req.params.id).populate('almacen').populate('producto').exec( (err,found) => 
+
+		!err ? res.render('editarArticulo', {articulo: found, almacen: almacenHolder, producto: productoHolder}) : console.log(err)) 	
+
+} 
+
+);
+
+router.put('/articulo/:id', (req,res) => 
+
+		Articulo.findByIdAndUpdate(req.params.id,req.body.articulo, (err,edited) => !err ? res.redirect('/articulo') : console.log(err))
+
+ );
+
+router.delete('/articulo/:id', (req,res) => Articulo.findByIdAndRemove(req.params.id, (err,del) => !err ? res.redirect('/articulo') : console.log(err) ) );
 
 
 module.exports = router;
