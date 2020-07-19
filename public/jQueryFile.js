@@ -2,25 +2,31 @@
 
 
 
-// var dataHolder = [];
+var dataHolder;
 
 function jQueryFile() {
 
 
-// // Producto.find
+	$('#toCapture').change( function() {
+	
+		$('#precioVenta').val($('#toCapture').val());
 
-var hold = [];
-
-	$('select').change( function() {
-		// alert($('select').val());
-		// hold.push($('select').val());
-		// alert($('select').val());
-// // 		// dataHolder.push($('select').val());
-// // 		// $('#precioLista').attr('value',`<%=producto[${hold}]%>`);
-// // 		// console.log(typeof dataHolder[0]);
 	});
 
+	$('i').click(function() {
 
+		$('#toAdd').append(
+
+			"<tr>" +
+			`<td>${$('#toCapture option:selected').text()}</td>` +
+			`<td>${$('#precioVenta').val()}</td>` +
+			`<td>${$('#cantidad').val()}</td>` +
+			"</tr>"
+			
+			);
+
+
+	});
 
 
 

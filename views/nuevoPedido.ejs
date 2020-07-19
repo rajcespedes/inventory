@@ -8,21 +8,40 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>	
 	<script type="text/javascript" src="/jQueryFile.js"></script>
+	<script type="text/javascript" src="https://kit.fontawesome.com/48d31a0846.js"></script>
 </head>
 <body>
 	<div class="container">
-		<div class="form-group">
+		<div class="form-group row">
 			<label >Producto</label>
-			<select class="btn btn-outline-secondary dropdown-toggle form-control col-5 dropdown">
+			<select id="toCapture" class="btn btn-outline-secondary dropdown-toggle form-control col-5 dropdown">
+				<option>Seleccione...</option>
 				<% articulo.forEach( function(articulo){ %>
-					<option value=""> <%= articulo.producto.descripcion %></option>
+					<option value="<%= articulo.producto.precioVenta %>"> <%= articulo.producto.descripcion %></option>
 				<% } ) %>
 			</select>
-			<label>Precio</label>
-			<input type="text" name="" disabled value="x">
+			<label class="mr-1">Precio</label>
+			<input id="precioVenta" disabled>
+			<label  class="mr-1">Cantidad</label>
+			<input id="cantidad" type="text">
+			<i class="fa fa-plus ml-1" aria-hidden="true"></i>
+
 
 		</div>
 	</div>
+	<table class="table table-striped container">
+	
+  <thead>
+    <tr>
+      <th scope="col">Producto</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Precio</th>
+    </tr>
+  </thead>
+  <tbody id="toAdd">
+  
+  </tbody>
+</table>
 	
 </body>
 </html

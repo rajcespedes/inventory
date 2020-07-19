@@ -15,3 +15,7 @@ img	{
 .dropdown {
 	display: block;
 }
+
+i {
+	font-size: 30px;
+}
