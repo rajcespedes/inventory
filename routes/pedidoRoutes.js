@@ -19,4 +19,12 @@ router.get('/pedido/new',(req,res) =>
 );
 
 
+router.post('/pedido', function(req,res) {
+
+	console.log(req.body.sendToBack);
+	res.send('Reached pedido post route');
+
+});
+ 
+
 module.exports = router;

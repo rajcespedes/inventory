@@ -29,19 +29,33 @@
 
 		</div>
 	</div>
-	<table class="table table-striped container">
+	<table id="listaPedido" class="table table-striped container">	
+	  <thead>
+	    <tr>
+	      <th scope="col">Producto</th>
+	      <th scope="col">Cantidad</th>
+	      <th scope="col">Precio</th>
+	    </tr>
+	  </thead>
+	  <tbody id="toAdd">
+	  
+	  </tbody>
+	</table>
+	<table id="total" class="table container">
+		<thead>
+			<tr>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td id="totalSum"></td>
+			</tr>
+		</tbody>
+	</table>
 	
-  <thead>
-    <tr>
-      <th scope="col">Producto</th>
-      <th scope="col">Cantidad</th>
-      <th scope="col">Precio</th>
-    </tr>
-  </thead>
-  <tbody id="toAdd">
-  
-  </tbody>
-</table>
+	<a href="/pedido"> <input id="guardarPedido" type="submit" class="btn btn-success" value="Guardar" name="" > </a>
 	
+
 </body>
 </html
