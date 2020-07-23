@@ -10,6 +10,8 @@ var toCut = [];
 
 var cantidadHolder = [];
 
+var precioHolder = [];
+
 function jQueryFile() {
 
 	
@@ -41,6 +43,8 @@ function jQueryFile() {
 		sendToBack.push(toCut.slice(1));
 
 		cantidadHolder.push($('#cantidad').val());
+
+		precioHolder.push($('#precioVenta').val());
 
 
 		console.log(sendToBack);

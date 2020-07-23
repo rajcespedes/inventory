@@ -7,7 +7,9 @@ const express 		= require('express'),
 
 router.get('/pedido', (req,res) => 
 
-	Pedido.find({}).populate('articulo').exec( (err,found) => !err ? res.render('pedidoIndex',{ pedido: found }) : console.log(err) ) 
+	Pedido.find({}).populate('articulo').exec( (err,found) => 
+
+		!err ? res.render('pedidoIndex',{ pedido: found }) : console.log(err) ) 
 
 );
 
@@ -23,13 +25,26 @@ var articuloHolder = [];
 
 router.post('/pedido', function(req,res) {
 
-	articuloHolder.push(req.body.sentoBack);
+	// console.log(req.body.sendToBack[0]);
 
-	console.log(articuloHolder);
+	req.body.sendToBack.forEach( element => 
+
+		Producto.find({descripcion: element }, (err,found) => 
+
+			!err ? articuloHolder.push(found) : console.log(err) )
+
+	 );
+
+
+	articuloHolder.forEach( element => console.log(element._id));
+
+	// ;
+
+	// Articulo.find({});
 
 	// Producto.find({req.body.sendToBack}).populate('articulo').exec( () );
 
-	console.log(req.body.sendToBack + req.body.cantidadHolder);
+	// console.log(req.body.sendToBack + req.body.cantidadHolder);
 	// res.send('Reached pedido post route');
 
 });
