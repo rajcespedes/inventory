@@ -6,6 +6,10 @@ var grow = 0;
 
 var sendToBack = [];
 
+var toCut = [];
+
+var cantidadHolder = [];
+
 function jQueryFile() {
 
 	
@@ -32,16 +36,25 @@ function jQueryFile() {
 
 		$('#totalSum').text(total);
 
-		sendToBack.push($(`#toCapture option:selected`).text());
+		toCut = $(`#toCapture option:selected`).text();
+
+		sendToBack.push(toCut.slice(1));
+
+		cantidadHolder.push($('#cantidad').val());
+
+
 		console.log(sendToBack);
+		console.log(cantidadHolder);
 
 	});
 
-	$('#guardarPedido').click(
+	$('#guardarPedido').click( 
+
+		
 
 		function(){
 
-			$.post('/pedido',sendToBack,function(res,textStat){});
+			$.post('http://localhost:3000/pedido/',{sendToBack, cantidadHolder},function(data,status){});
 
 		}
 
