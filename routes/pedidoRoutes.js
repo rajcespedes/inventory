@@ -21,31 +21,33 @@ router.get('/pedido/new',(req,res) =>
 
 );
 
-var articuloHolder = [];
+var articuloHolder;
+
+var actualDate = new Date();
 
 router.post('/pedido', function(req,res) {
 
-	// console.log(req.body.sendToBack[0]);
-
 	req.body.sendToBack.forEach( element => 
 
-		Producto.find({descripcion: element }, (err,found) => 
+		Producto.find({descripcion: element },'_id').exec( function(err,res) { 
 
-			!err ? articuloHolder.push(found) : console.log(err) )
+			articuloHolder.push(res);
+
+		} )
+
 
 	 );
 
 
-	articuloHolder.forEach( element => console.log(element._id));
+	console.log(articuloHolder);
 
-	// ;
+	// Pedido.create({
+	// 	fecha: actualDate.toLocaleDateString(),
+	// 	cantidad: req.body.cantidadHolder,
+	// 	articulo: articuloHolder.forEach( id => id),
 
-	// Articulo.find({});
+	// });
 
-	// Producto.find({req.body.sendToBack}).populate('articulo').exec( () );
-
-	// console.log(req.body.sendToBack + req.body.cantidadHolder);
-	// res.send('Reached pedido post route');
 
 });
  
