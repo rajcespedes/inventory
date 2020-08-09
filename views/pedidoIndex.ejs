@@ -3,34 +3,31 @@
 <table class="table table-striped container">
 	
   <thead>
-  	<tr>
-  		<th id="no-border" class="pl-0 pb-1"><a href="/pedido/new" class="btn btn-success">Crear pedido</a></th>
-  	</tr>
     <tr>
+      <th scope="col">Seleccionar</th>
       <th scope="col">Producto</th>
-      <th scope="col">Cantidad</th>
+      <th scope="col">Cantidad disponible</th>
       <th scope="col">Almacen</th>
-      <th scope="col">Fecha pedido</th>
-      <th scope="col" colspan="2">Acción</th>
+      <th scope="col">Cantidad a seleccionar</th>
     </tr>
   </thead>
-  <tbody>
-  	<% pedido.forEach(function(pedido){ %>
-    <tr>
-      	<td><%= pedido.articulo.descripcion %></td>
-        <td><%= pedido.cantidad %></td>      	
-        <td><%= pedido.fecha %></td>
-      	<td>
-      		<div class="row">
-      			<a href="/articulo/<%=articulo._id%>/edit" class="btn btn-sm btn-info mr-1">Editar</a>
-      			<form action="/articulo/<%=articulo._id%>?_method=DELETE" method="POST">
-	    				<input class="btn btn-sm btn-danger" type="submit" value="Eliminar">
-	    			</form>
-      		</div>      		
-      	</td>
-    </tr>
-  	  <% }); %>
-  </tbody>
+  <form action="/pedido" method="POST">
+    <tbody>
+      <% articulo.forEach(function(articulo){ %>
+        <tr>
+            <td><input type="checkbox" name="pedido[id]" value="<%= articulo._id %>"></td>
+            <td><%= articulo.producto.descripcion %></td>
+            <td><%= articulo.cantidad %></td>       
+            <td><%= articulo.almacen.nombre %></td>
+            <td ><input class="col-3" type="number" name="pedido[cantidad]"></td>         
+        </tr>
+      <% }); %>
+        <tr>
+            <th id="no-border" class="pl-0 pb-1"> <input type="submit" value="Crear pedido" class="btn btn-success"></th>
+        </tr>   
+    </tbody>    
+  </form>
+  
 </table>
 
 

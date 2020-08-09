@@ -7,9 +7,11 @@ const express 		= require('express'),
 
 router.get('/pedido', (req,res) => 
 
-	Pedido.find({}).populate('articulo').exec( (err,found) => 
+	Articulo.find({}).populate('almacen').populate('producto').exec( (err,found) => 
 
-		!err ? res.render('pedidoIndex',{ pedido: found }) : console.log(err) ) 
+		// console.log(found) ) 
+
+		!err ? res.render('pedidoIndex',{ articulo: found }) : console.log(err) ) 
 
 );
 
@@ -21,33 +23,33 @@ router.get('/pedido/new',(req,res) =>
 
 );
 
-var articuloHolder;
+var articuloHolder = [];
 
 var actualDate = new Date();
 
 router.post('/pedido', function(req,res) {
 
-	req.body.sendToBack.forEach( element => 
 
-		Producto.find({descripcion: element },'_id').exec( function(err,res) { 
+	// Articulo.create({
+	// 	cantidad: req.body.pedido.
+	// }, function(err,added){});
 
-			articuloHolder.push(res);
+	// req.body.sendToBack.forEach( element => 
 
-		} )
+	// 	Producto.find({descripcion: element },'_id').exec( function(err,res) { 
 
+	// 		articuloHolder.push(res);
 
-	 );
+	// 		articuloHolder.forEach( id => id.forEach( innerId => console.log(innerId._id)));
 
+	// 	} )
 
-	console.log(articuloHolder);
+	// console.log
+	//  );
 
-	// Pedido.create({
-	// 	fecha: actualDate.toLocaleDateString(),
-	// 	cantidad: req.body.cantidadHolder,
-	// 	articulo: articuloHolder.forEach( id => id),
+	console.log(req.body.pedido);
 
-	// });
-
+	
 
 });
  

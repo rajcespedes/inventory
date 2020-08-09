@@ -47,8 +47,9 @@ function jQueryFile() {
 		precioHolder.push($('#precioVenta').val());
 
 
-		console.log(sendToBack);
-		console.log(cantidadHolder);
+		// console.log(sendToBack);
+		// console.log(cantidadHolder);
+		console.log($('#totalSum').text());
 
 	});
 
