@@ -53,6 +53,8 @@ function jQueryFile() {
 
 	});
 
+	var someVar;
+
 	$('#guardarPedido').click( 
 
 		
@@ -60,6 +62,12 @@ function jQueryFile() {
 		function(){
 
 			$.post('http://localhost:3000/pedido/',{sendToBack, cantidadHolder},function(data,status){});
+
+			someVar = $('.pick').text();
+
+			alert('testing');
+
+			console.log(someVar);
 
 		}
 
@@ -77,6 +85,3 @@ window.onload = function () {
 	jQueryFile();
 
 }
-
-
-

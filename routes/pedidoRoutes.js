@@ -23,12 +23,20 @@ router.get('/pedido/new',(req,res) =>
 
 );
 
-var articuloHolder = [];
+var cantidadHolder = [];
 
 var actualDate = new Date();
 
 router.post('/pedido', function(req,res) {
+	
+	req.body.pedido.cantidad.forEach( function(value){
+		if (value != "") {
+			cantidadHolder.push(value);
+			
+		}
+	} );
 
+	console.log("actual value " + cantidadHolder);
 
 	// Articulo.create({
 	// 	cantidad: req.body.pedido.
