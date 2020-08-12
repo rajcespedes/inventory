@@ -11,7 +11,7 @@
       <th scope="col">Cantidad a seleccionar</th>
     </tr>
   </thead>
-  <form action="/pedido" method="POST">
+  <!-- <form action="/pedido" method="POST"> -->
     <tbody>
       <% articulo.forEach(function(articulo){ %>
         <tr>
@@ -19,13 +19,16 @@
             <td><%= articulo.producto.descripcion %></td>
             <td><%= articulo.cantidad %></td>       
             <td><%= articulo.almacen.nombre %></td>
+            
             <td ><input class="col-3 pick" type="number" name="pedido[cantidad]"></td>         
         </tr>
       <% }); %>
         <tr>
-            <th id="no-border" class="pl-0 pb-1"> <input type="submit" value="Crear pedido" class="btn btn-success"></th>
+            <th id="no-border" class="pl-0 pb-1"> <input id="guardarPedido" type="submit" value="Crear pedido" class="btn btn-success"></th>
         </tr>   
     </tbody>    
-  </form>
+  <!-- </form> -->
   
 </table>
+
+<script type="text/javascript" src="/jQueryFile.js"></script>

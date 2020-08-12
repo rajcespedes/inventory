@@ -1,3 +1,6 @@
+
+
+
 var dataHolder;
 
 var total = 0;
@@ -14,64 +17,67 @@ var precioHolder = [];
 
 function jQueryFile() {
 
+	// alert('working');	
+
+	// $('#toCapture').change( function() {
 	
+	// 	$('#precioVenta').val($('#toCapture').val());
 
-	$('#toCapture').change( function() {
-	
-		$('#precioVenta').val($('#toCapture').val());
+	// });
 
-	});
+	// $('i').click(function() {
 
-	$('i').click(function() {
+	// 	$('#toAdd').append(
 
-		$('#toAdd').append(
-
-			"<tr>" +
-			`<td id="x${grow++}">${$('#toCapture option:selected').text()}</td>` +
-			`<td>${$('#precioVenta').val()}</td>` +
-			`<td>${$('#cantidad').val()}</td>` +
-			"</tr>"
+	// 		"<tr>" +
+	// 		`<td id="x${grow++}">${$('#toCapture option:selected').text()}</td>` +
+	// 		`<td>${$('#precioVenta').val()}</td>` +
+	// 		`<td>${$('#cantidad').val()}</td>` +
+	// 		"</tr>"
 			
-		);
+	// 	);
 
-		total += $('#precioVenta').val() * $('#cantidad').val();
+	// 	total += $('#precioVenta').val() * $('#cantidad').val();
 
-		$('#totalSum').text(total);
+	// 	$('#totalSum').text(total);
 
-		toCut = $(`#toCapture option:selected`).text();
+	// 	toCut = $(`#toCapture option:selected`).text();
 
-		sendToBack.push(toCut.slice(1));
+	// 	sendToBack.push(toCut.slice(1));
 
-		cantidadHolder.push($('#cantidad').val());
+	// 	cantidadHolder.push($('#cantidad').val());
 
-		precioHolder.push($('#precioVenta').val());
+	// 	precioHolder.push($('#precioVenta').val());
 
 
-		// console.log(sendToBack);
-		// console.log(cantidadHolder);
-		console.log($('#totalSum').text());
+	// 	// console.log(sendToBack);
+	// 	// console.log(cantidadHolder);
+	// 	console.log($('#totalSum').text());
 
-	});
+	// });
 
-	var someVar;
+	// var someVar;
 
 	$('#guardarPedido').click( 
 
-		
 
-		function(){
+		function (){
 
-			$.post('http://localhost:3000/pedido/',{sendToBack, cantidadHolder},function(data,status){});
+			console.log($('input[type="checkbox"]:checked').val());
 
-			someVar = $('.pick').text();
+			// console.log('runs');
+
+			// $.post('http://localhost:3000/pedido/',{sendToBack, cantidadHolder},function(data,status){});
+
+			// someVar = $('.pick').text();
 
 			alert('testing');
 
-			console.log(someVar);
+			// console.log(someVar);
 
 		}
 
-		);
+	);
 
 
 
