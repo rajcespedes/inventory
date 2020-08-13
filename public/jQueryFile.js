@@ -63,15 +63,25 @@ function jQueryFile() {
 
 		function (){
 
-			console.log($('input[type="checkbox"]:checked').val());
+			var trying = $('input[name=pedido]:checked').map( function () {
+				return $(this).val();
+			}).get();
 
-			// console.log('runs');
+			if ($('input[type=name]:checked').val()) {
+				var capture = $('input[type=number]').val();
+				console.log(capture);
+			}
+			
+
+			console.log(trying);
+
+			// if () {}
 
 			// $.post('http://localhost:3000/pedido/',{sendToBack, cantidadHolder},function(data,status){});
 
 			// someVar = $('.pick').text();
 
-			alert('testing');
+			// alert('testing');
 
 			// console.log(someVar);
 

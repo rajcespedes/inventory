@@ -7,22 +7,27 @@
       <th scope="col">Seleccionar</th>
       <th scope="col">Producto</th>
       <th scope="col">Cantidad disponible</th>
-      <th scope="col">Almacen</th>
+    
       <th scope="col">Cantidad a seleccionar</th>
     </tr>
   </thead>
   <!-- <form action="/pedido" method="POST"> -->
+
+    <!-- <h1><%= articulo.length %></h1> -->
     <tbody>
-      <% articulo.forEach(function(articulo){ %>
-        <tr>
-            <td><input type="checkbox" name="pedido[id]" value="<%= articulo._id %>"></td>
-            <td><%= articulo.producto.descripcion %></td>
-            <td><%= articulo.cantidad %></td>       
-            <td><%= articulo.almacen.nombre %></td>
+      <% for (var i = 0; i < articulo.length; i++) { %>
+       
+          <tr>
+            <td><input type="checkbox" name="pedido" value="<%=articulo[i]._id%>"></td>
+            <td><%= articulo[i].producto.descripcion %></td>
+            <td><%= articulo[i].cantidad %></td>
             
-            <td ><input class="col-3 pick" type="number" name="pedido[cantidad]"></td>         
+            <td ><input id="q<%=i%>" class="col-3 pick" type="number" name="pedido"></td>         
         </tr>
-      <% }); %>
+      
+
+      <%  } %>
+      
         <tr>
             <th id="no-border" class="pl-0 pb-1"> <input id="guardarPedido" type="submit" value="Crear pedido" class="btn btn-success"></th>
         </tr>   
