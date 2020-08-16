@@ -23,20 +23,38 @@ router.get('/pedido/new',(req,res) =>
 
 );
 
-var cantidadHolder = [];
+var precioHolder = [];
 
 var actualDate = new Date();
 
 router.post('/pedido', function(req,res) {
-	
-	req.body.pedido.cantidad.forEach( function(value){
-		if (value != "") {
-			cantidadHolder.push(value);
-			
-		}
-	} );
 
-	console.log("actual value " + cantidadHolder);
+	req.body.trying.forEach( element => 
+		// function(element) {
+		// console.log('checking now ' + element)
+		Producto.findById(element, (err,found) => !err ? console.log(found) 
+		// precioHolder.push(found.precioVenta) 
+		: console.log(err) )
+		
+	// }
+	);
+
+	// console.log(precioHolder);
+
+	// Pedido.create({
+	// 	cantidad: req.body.take,
+	// 	fecha: actualDate.toLocaleDateString(),
+
+	// }, function(err,crated){});
+	
+	// req.body.pedido.cantidad.forEach( function(value){
+	// 	if (value != "") {
+	// 		cantidadHolder.push(value);
+			
+	// 	}
+	// } );
+
+	// console.log("actual value " + cantidadHolder);
 
 	// Articulo.create({
 	// 	cantidad: req.body.pedido.
@@ -55,7 +73,7 @@ router.post('/pedido', function(req,res) {
 	// console.log
 	//  );
 
-	console.log(req.body.pedido);
+	console.log(req.body);
 
 	
 

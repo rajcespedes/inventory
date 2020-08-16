@@ -72,18 +72,22 @@ function jQueryFile() {
 				console.log(capture);
 			}
 
-			var attempt = $('td').children(`input[type=number]`).map( function (x) {
-				return $(this).filter( x > 0).val();
+			var attempt = $('td').children(`input[type=number]`).map( function () {
+				return $(this).val();
 			}).get();
 
-			console.log("the attempt is " + attempt);
+			// ;
+
+			var take = attempt.filter( e => e > 0);
+
+			// console.log("the attempt is " + take);
 
 
-			console.log(trying);
+			// console.log(trying);
 
 			// if () {}
 
-			// $.post('http://localhost:3000/pedido/',{sendToBack, cantidadHolder},function(data,status){});
+			$.post('http://localhost:3000/pedido/',{trying, take},function(data,status){});
 
 			// someVar = $('.pick').text();
 
