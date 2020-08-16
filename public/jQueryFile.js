@@ -56,7 +56,7 @@ function jQueryFile() {
 
 	// });
 
-	// var someVar;
+	// var someVar;git
 
 	$('#guardarPedido').click( 
 
@@ -71,7 +71,13 @@ function jQueryFile() {
 				var capture = $('input[type=number]').val();
 				console.log(capture);
 			}
-			
+
+			var attempt = $('td').children(`input[type=number]`).map( function (x) {
+				return $(this).filter( x > 0).val();
+			}).get();
+
+			console.log("the attempt is " + attempt);
+
 
 			console.log(trying);
 
