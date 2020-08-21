@@ -20,9 +20,9 @@
           <tr>
             <td><input type="checkbox" name="pedido" value="<%=articulo[i]._id%>"></td>
             <td><%= articulo[i].producto.descripcion %></td>
-            <td><%= articulo[i].cantidad %></td>
+            <td> <p id="q<%=articulo[i]._id%>"><%= articulo[i].cantidad %></p> </td>
             
-            <td><input id="q<%=articulo[i]._id%>" class="col-3 pick" type="number" name="pedido"></td>         
+            <td><input class="col-3 pick" type="number" name="pedido"></td>         
         </tr>
       
 

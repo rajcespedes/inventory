@@ -80,8 +80,17 @@ function jQueryFile() {
 
 			var take = attempt.filter( e => e > 0);
 
-			// console.log("the attempt is " + take);
+			var holder = [];
 
+			trying.forEach( function(element) {
+				holder.push( $(`#q${element}`).text()); 
+			} );
+
+			var totalHolder = [];
+
+			// holder.forEach( e => parseInt(e) * );
+
+			console.log("the holder is " + totalHolder);
 
 			// console.log(trying);
 

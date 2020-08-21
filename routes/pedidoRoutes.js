@@ -8,10 +8,8 @@ const express 		= require('express'),
 router.get('/pedido', (req,res) => 
 
 	Articulo.find({}).populate('almacen').populate('producto').exec( (err,found) => 
-
-		// console.log(found) ) 
-
-		!err ? res.render('pedidoIndex',{ articulo: found }) : console.log(err) ) 
+	
+	!err ? res.render('pedidoIndex',{ articulo: found }) : console.log(err) ) 
 
 );
 
@@ -29,21 +27,12 @@ var actualDate = new Date();
 
 router.post('/pedido', function(req,res) {
 
-	req.body.trying.forEach( element => 
-		// function(element) {
-		// console.log('checking now ' + element)
-		Producto.findById(element, (err,found) => !err ? console.log(found) 
-		// precioHolder.push(found.precioVenta) 
-		: console.log(err) )
-		
-	// }
-	);
-
 	// console.log(precioHolder);
 
 	// Pedido.create({
 	// 	cantidad: req.body.take,
 	// 	fecha: actualDate.toLocaleDateString(),
+
 
 	// }, function(err,crated){});
 	
