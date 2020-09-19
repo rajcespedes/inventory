@@ -40,5 +40,3 @@ app.use(bodyParser.urlencoded({extende: true}));
 app.use(methodOverride("_method"));
 
 app.get('/', (req,res) => res.render('home'));
-
-

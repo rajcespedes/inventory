@@ -69,14 +69,18 @@ function jQueryFile() {
 
 			if ($('input[type=name]:checked').val()) {
 				var capture = $('input[type=number]').val();
-				console.log(capture);
+				console.log('capture');
 			}
 
 			var attempt = $('td').children(`input[type=number]`).map( function () {
 				return $(this).val();
 			}).get();
 
-			// ;
+
+			$('input[type=name]:checked').on('click', function() {
+				console.log('selected');
+			});
+			
 
 			var take = attempt.filter( e => e > 0);
 
@@ -89,8 +93,6 @@ function jQueryFile() {
 			var totalHolder = [];
 
 			// holder.forEach( e => parseInt(e) * );
-
-			console.log("the holder is " + totalHolder);
 
 			// console.log(trying);
 

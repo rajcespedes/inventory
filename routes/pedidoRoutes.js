@@ -32,6 +32,7 @@ router.post('/pedido', function(req,res) {
 	// Pedido.create({
 	// 	cantidad: req.body.take,
 	// 	fecha: actualDate.toLocaleDateString(),
+	//  articulo: 
 
 
 	// }, function(err,crated){});

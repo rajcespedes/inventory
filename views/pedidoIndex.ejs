@@ -7,7 +7,7 @@
       <th scope="col">Seleccionar</th>
       <th scope="col">Producto</th>
       <th scope="col">Cantidad disponible</th>
-    
+      <th scope="col">Precio</th>
       <th scope="col">Cantidad a seleccionar</th>
     </tr>
   </thead>
@@ -18,12 +18,12 @@
       <% for (var i = 0; i < articulo.length; i++) { %>
        
           <tr>
-            <td><input type="checkbox" name="pedido" value="<%=articulo[i]._id%>"></td>
+            <td><input type="checkbox" name="pedido" value="<%=articulo[i]._id%>" id="i<%=i%>"></p></td>
             <td><%= articulo[i].producto.descripcion %></td>
             <td> <p id="q<%=articulo[i]._id%>"><%= articulo[i].cantidad %></p> </td>
-            
-            <td><input class="col-3 pick" type="number" name="pedido"></td>         
-        </tr>
+            <td> <p id="p<%=articulo[i]._id%>"><%= articulo[i].producto.precioVenta %> </p> </td>
+            <td><input class="col-3 pick" type="number" name="pedido"></td>        
+          </tr>
       
 
       <%  } %>
