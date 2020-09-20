@@ -18,10 +18,10 @@
       <% for (var i = 0; i < articulo.length; i++) { %>
        
           <tr>
-            <td><input type="checkbox" name="pedido" value="<%=articulo[i]._id%>" id="i<%=i%>"></p></td>
+            <td><input type="checkbox" name="pedido" value="<%=articulo[i]%>" id="i<%=i%>"></p></td>
             <td><%= articulo[i].producto.descripcion %></td>
             <td> <p id="q<%=articulo[i]._id%>"><%= articulo[i].cantidad %></p> </td>
-            <td> <p id="p<%=articulo[i]._id%>"><%= articulo[i].producto.precioVenta %> </p> </td>
+            <td> <p id="p<%=articulo[i]._id%>"> <%= articulo[i].producto.precioVenta %> </p> </td>
             <td><input class="col-3 pick" type="number" name="pedido"></td>        
           </tr>
       

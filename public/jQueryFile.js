@@ -17,101 +17,48 @@ var precioHolder = [];
 
 function jQueryFile() {
 
-	// alert('working');	
-
-	// $('#toCapture').change( function() {
+	// $('input[type=checkbox]').click( function() {
+	// 	if($(this).is(':checked')){
+	// 		console.log($(this).attr('id'));
+	// 	}
+	// });
 	
-	// 	$('#precioVenta').val($('#toCapture').val());
-
-	// });
-
-	// $('i').click(function() {
-
-	// 	$('#toAdd').append(
-
-	// 		"<tr>" +
-	// 		`<td id="x${grow++}">${$('#toCapture option:selected').text()}</td>` +
-	// 		`<td>${$('#precioVenta').val()}</td>` +
-	// 		`<td>${$('#cantidad').val()}</td>` +
-	// 		"</tr>"
-			
-	// 	);
-
-	// 	total += $('#precioVenta').val() * $('#cantidad').val();
-
-	// 	$('#totalSum').text(total);
-
-	// 	toCut = $(`#toCapture option:selected`).text();
-
-	// 	sendToBack.push(toCut.slice(1));
-
-	// 	cantidadHolder.push($('#cantidad').val());
-
-	// 	precioHolder.push($('#precioVenta').val());
-
-
-	// 	// console.log(sendToBack);
-	// 	// console.log(cantidadHolder);
-	// 	console.log($('#totalSum').text());
-
-	// });
-
-	// var someVar;git
-
 	$('#guardarPedido').click( 
-
 
 		function (){
 
-			var trying = $('input[name=pedido]:checked').map( function () {
-				return $(this).val();
-			}).get();
-
-			if ($('input[type=name]:checked').val()) {
-				var capture = $('input[type=number]').val();
-				console.log('capture');
-			}
-
-			var attempt = $('td').children(`input[type=number]`).map( function () {
-				return $(this).val();
-			}).get();
-
-
-			$('input[type=name]:checked').on('click', function() {
-				console.log('selected');
+			$('input[type=checkbox]').click( function() {
+				if($(this).is(':checked')){
+					console.log(typeof $(this).attr('value'));
+				}
 			});
+		
+
+			// var trying = $('input[name=pedido]:checked').map( function () {
+			// 	return $(this).val();
+			// }).get();
 			
+			// if($('input[type=checkbox]'))
+ 
+			// var attempt = $('td').children(`input[type=number]`).map( function () {
+			// 	return $(this).val();
+			// }).get();		
 
-			var take = attempt.filter( e => e > 0);
+			// var take = attempt.filter( e => e > 0);
 
-			var holder = [];
+			// var holder = [];
 
-			trying.forEach( function(element) {
-				holder.push( $(`#q${element}`).text()); 
-			} );
+			// trying.forEach( function(element) {
+			// 	holder.push( $(`#q${element}`).text()); 
+			// } );
 
-			var totalHolder = [];
+			// var totalHolder = [];
 
-			// holder.forEach( e => parseInt(e) * );
-
-			// console.log(trying);
-
-			// if () {}
-
-			$.post('http://localhost:3000/pedido/',{trying, take},function(data,status){});
-
-			// someVar = $('.pick').text();
-
-			// alert('testing');
-
-			// console.log(someVar);
+			// $.post('http://localhost:3000/pedido/',{trying, take},function(data,status){});		
 
 		}
 
 	);
-
-
-
 
 
 }
