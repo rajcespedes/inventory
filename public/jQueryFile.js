@@ -1,7 +1,7 @@
 
 
 
-var dataHolder;
+var dataHolder = [];
 
 var total = 0;
 
@@ -17,21 +17,22 @@ var precioHolder = [];
 
 function jQueryFile() {
 
-	// $('input[type=checkbox]').click( function() {
-	// 	if($(this).is(':checked')){
-	// 		console.log($(this).attr('id'));
-	// 	}
-	// });
+	$('input[type=checkbox]').click( function() {
+		if($(this).is(':checked')){
+			dataHolder = $(this).val();
+			console.log(dataHolder);
+		}
+	});
 	
 	$('#guardarPedido').click( 
 
 		function (){
 
-			$('input[type=checkbox]').click( function() {
-				if($(this).is(':checked')){
-					console.log(typeof $(this).attr('value'));
-				}
-			});
+			// $('input[type=checkbox]').click( function() {
+			// 	if($(this).is(':checked')){
+			// 		console.log($(this).attr('value'));
+			// 	}
+			// });
 		
 
 			// var trying = $('input[name=pedido]:checked').map( function () {
