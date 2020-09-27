@@ -19,7 +19,7 @@
        
         <% var x = []; %>
           <tr>
-            <td><input type="checkbox" name="pedido" value="<%= x = [articulo[i].id, articulo[i].cantidad, articulo[i].producto.precioVenta]%>"></p></td>
+            <td><input type="checkbox" name="pedido" value="<%= x = [articulo[i].id, articulo[i].cantidad, articulo[i].producto.precioVenta] %>"></p></td>
             <td><%= articulo[i].producto.descripcion %></td>
             <td> <p id="q<%=articulo[i]._id%>"><%= articulo[i].cantidad %></p> </td> 
             <td> <p id="p<%=articulo[i]._id%>"> <%= articulo[i].producto.precioVenta %> </p> </td>

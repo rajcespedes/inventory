@@ -19,7 +19,7 @@ function jQueryFile() {
 
 	$('input[type=checkbox]').click( function() {
 		if($(this).is(':checked')){
-			dataHolder = $(this).val();
+			dataHolder.push($(this).val());
 			console.log(dataHolder);
 		}
 	});
@@ -55,7 +55,7 @@ function jQueryFile() {
 
 			// var totalHolder = [];
 
-			// $.post('http://localhost:3000/pedido/',{trying, take},function(data,status){});		
+			$.post('http://localhost:3000/pedido/',{dataHolder},function(data,status){});		
 
 		}
 
