@@ -3,9 +3,9 @@
 
 var dataHolder = [];
 
-var total = 0;
+var precioHolder = [];
 
-var grow = 0; 
+var cantidadHolder; 
 
 var sendToBack = [];
 
@@ -20,7 +20,11 @@ function jQueryFile() {
 	$('input[type=checkbox]').click( function() {
 		if($(this).is(':checked')){
 			dataHolder.push($(this).val());
-			console.log(dataHolder);
+			precioHolder.push($(`#q${$(this).val()}`).text());
+			
+			// $(`#p${$(this).val()}`).change( () => console.log($(`#p${$(this).val()}`).val()));
+			
+			// console.log(dataHolder);
 		}
 	});
 	
@@ -28,10 +32,15 @@ function jQueryFile() {
 
 		function (){
 
+			// alert('worked');
+
 			// $('input[type=checkbox]').click( function() {
-			// 	if($(this).is(':checked')){
-			// 		console.log($(this).attr('value'));
-			// 	}
+				// if($('input[type=checkbox]').is(':checked')){
+					if($('input[name=pedido]:checked')){
+					// alert($(`#p${$('input[name=pedido]:checked').val()}`).val());
+					cantidadHolder.push($(`#p${$('input[name=pedido]:checked').val()}`).val());
+					console.log(cantidadHolder);
+				}
 			// });
 		
 

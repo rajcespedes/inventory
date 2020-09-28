@@ -63,7 +63,7 @@ router.post('/pedido', function(req,res) {
 	// console.log
 	//  );
 
-	console.log(req.body.dataHolder);
+	// console.log(req.body.dataHolder);
 
 	
 
