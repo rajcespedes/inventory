@@ -63,7 +63,9 @@ router.post('/pedido', function(req,res) {
 	// console.log
 	//  );
 
-	// console.log(req.body.dataHolder);
+	// console.log(req.body.toCut);
+
+	req.body.toCut.forEach(i => console.log('element ', i.forEach( t => t)));
 
 	
 
