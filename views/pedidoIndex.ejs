@@ -8,10 +8,10 @@
       <th scope="col">Producto</th>
       <th scope="col">Cantidad disponible</th>
       <th scope="col">Precio</th>
-      <th scope="col">Cantidad a seleccionar</th>
+      <!-- <th scope="col">Cantidad a seleccionar</th> -->
     </tr>
   </thead>
-  <form>
+  <!-- <form> -->
 
     <!-- <h1><%= articulo.length %></h1> -->
     <tbody>
@@ -23,17 +23,17 @@
             <td><%= articulo[i].producto.descripcion %></td>
             <td> <p id="q<%=articulo[i]._id%>"><%= articulo[i].cantidad %></p> </td> 
             <td> <p> <%= articulo[i].producto.precioVenta %> </p> </td>
-            <td><input id="p<%=articulo[i]._id%>" class="col-3" name="cantidad" type="number" name="pedido"></td>        
+            <!-- <td><input id="p<%=articulo[i]._id%>" class="col-3" name="cantidad" type="number" name="pedido"></td>         -->
           </tr>
       
 
       <%  } %>
       
         <tr>
-            <th id="no-border" class="pl-0 pb-1"> <input id="guardarPedido" type="submit" value="Crear pedido" class="btn btn-success"></th>
+            <th id="no-border" class="pl-0 pb-1"> <a href="/pedidos/cantidad"><input id="guardarPedido"  type="submit" value="Crear pedido" class="btn btn-success"></a> </th>
         </tr>   
     </tbody>    
-  </form>
+  <!-- </form> -->
   
 </table>
 
