@@ -32,10 +32,7 @@ function jQueryFile() {
 
 		function (){
 			
-			toCut.push($('form').serializeArray());
-			// toCut.forEach( t => console.log(t));
-
-			// alert(toCut);
+			toCut = $('form').serializeArray();
 
 			$.post('http://localhost:3000/pedido/',{dataHolder, toCut},function(data,status){});		
 

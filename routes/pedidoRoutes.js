@@ -21,21 +21,40 @@ router.get('/pedido/new',(req,res) =>
 
 );
 
-var precioHolder = [];
+var cantidad = [];
+
+var element = [];
 
 var actualDate = new Date();
 
-// router.post('/pedido', function(req,res) {
+router.post('/pedido', function(req,res) {
 
-// 	res.redirect();
+	// console.log(req.body);
+
+	req.body.toCut.forEach( function (item){
+		if(item.value.length > 10){
+			// console.log('captured an id ', item.value);
+			element.push(item.value);
+		} else if(item.value.length != 0) {
+			// console.log('captured a number ', item.value);
+			cantidad.push(item.value);
+		}
+		
+	}
 
 	
+		
+		// item => console.log('element ',item.value)
+	
+	);
 
-// });
+	console.log(element);
 
-router.get('/pedidos/cantidad', function(req,res){
-	res.render('cantidad');
 });
+
+// router.get('/pedidos/cantidad', function(req,res){
+// 	res.render('cantidad');
+// });
  
 
 module.exports = router;
