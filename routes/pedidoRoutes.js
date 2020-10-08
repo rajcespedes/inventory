@@ -1,3 +1,5 @@
+const articulo = require('../models/articulo');
+
 const express 		= require('express'),
 		router		= express.Router(),
 		Pedido 		= require('../models/pedido'),
@@ -27,34 +29,43 @@ var element = [];
 
 var actualDate = new Date();
 
-router.post('/pedido', function(req,res) {
+var accum = 0;
 
-	// console.log(req.body);
+router.post('/pedido', function(req,res) {
 
 	req.body.toCut.forEach( function (item){
 		if(item.value.length > 10){
-			// console.log('captured an id ', item.value);
 			element.push(item.value);
 		} else if(item.value.length != 0) {
-			// console.log('captured a number ', item.value);
 			cantidad.push(item.value);
 		}
 		
 	}
-
-	
-		
-		// item => console.log('element ',item.value)
 	
 	);
 
-	console.log(element);
+	// element.forEach( data => Articulo.findById(data, (result,err) => result ? console.log(result) : console.log(err) ));
 
-});
+	// console.log(cantidad);
+	// console.log('price ', req.body.precioHolder);
 
-// router.get('/pedidos/cantidad', function(req,res){
-// 	res.render('cantidad');
-// });
- 
+	for (let i = 0; i < cantidad.length; i++){
+		// console.log(cantidad[i]);
+		accum += cantidad[i] * req.body.precioHolder[i];
+		// console.log(req.body.precioHolder[i]);
+		// console.log(accum);
+	}
+
+	Pedido.create({
+		cantidad: cantidad,
+		fecha: actualDate.toLocaleDateString(),
+		total: accum,
+		articulo: element
+	}, 
+	(saved,err) => saved ? console.log(saved) : console.log(err)
+	);
+
+
+}); 
 
 module.exports = router;
