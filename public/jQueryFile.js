@@ -23,8 +23,14 @@ function jQueryFile() {
 			precioHolder.push($(`#q${$(this).val()}`).text());
 			cantidadHolder.push(($(`#p${$(this).val()}`).val()));
 			
-			// console.log(precioHolder);
+			
 		}
+	});
+
+	$('input[type=number]').change( function(){
+		console.log($('.cantidadDisponible').text());
+		console.log($(this).val());
+		// if();
 	});
 	
 	$('#guardarPedido').click( 

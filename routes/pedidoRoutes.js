@@ -65,6 +65,9 @@ router.post('/pedido', function(req,res) {
 	(saved,err) => saved ? console.log(saved) : console.log(err)
 	);
 
+	cantidad = [];
+	accum = [];
+	element = [];
 
 }); 
 

@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 var pedidoSchema = new mongoose.Schema({
-	cantidad: Number,
+	cantidad: [Number],
 	fecha: String,
 	total: Number,
-	articulo: {
+	articulo: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Articulo'
-	}
+	}]
 });
 
 
