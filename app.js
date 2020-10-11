@@ -10,7 +10,8 @@ const 	express 		= require('express'),
 
 var Articulo = require('./models/articulo'),
 	Producto = require('./models/producto'),
-	Almacen	= require('./models/almacen');
+	Almacen	= require('./models/almacen'),
+	Pedido = require('./models/pedido');
 
 
 mongoose.connect('mongodb://localhost:27017/inventory',{useNewUrlParser: true, useUnifiedTopology: true});
@@ -34,6 +35,33 @@ app.use(productRoutes);
 app.use(articuloRoutes);
 
 app.use(pedidoRoutes);
+
+// var convert;
+
+app.get('/report', function(req,res) {
+	Pedido.find({}).populate('articulo').exec( function(err,data) {
+		if(!err){
+			// convert = ;
+			res.render('report', { dataRetrieved: JSON.stringify(data) });
+			
+		} else {
+			console.log(err);			
+		}
+		});
+	
+	// populate('articulo').exec( function(data,err)
+	// {
+	// 	if(data) {
+	// 		res.render('report',{dataFound: data});
+	// 	} else {
+	// 		console.log(err);
+	// 	}
+	// });
+	// // console.log(data);
+	// res.render('report');
+	
+
+});
 
 app.use(bodyParser.urlencoded({extende: true}));
 

@@ -7,7 +7,6 @@
         <script src="https://cdn.webdatarocks.com/latest/webdatarocks.js"></script>
     </head>
     <body>
-        
         <div id="wdr-component"></div>
         <script>
             var pivot = new WebDataRocks({
@@ -15,7 +14,7 @@
                 toolbar: true,
                 report: {
                     dataSource: {
-                        filename: "https://cdn.webdatarocks.com/data/data.csv"
+                        data: dataRetrieved
                     }
                 }
             });
