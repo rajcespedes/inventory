@@ -2,22 +2,28 @@
 
 <html>
     <head>
+        
+    </head>
+    <body>
+
         <link href="https://cdn.webdatarocks.com/latest/webdatarocks.min.css" rel="stylesheet"/>
         <script src="https://cdn.webdatarocks.com/latest/webdatarocks.toolbar.min.js"></script>
         <script src="https://cdn.webdatarocks.com/latest/webdatarocks.js"></script>
-    </head>
-    <body>
+
+        <div id="pick" data-test="<%= dataSent %>"></div>
         <div id="wdr-component"></div>
         <script>
+            var x = document.getElementById('pick').dataset.test;
+            // console.log(x);
             var pivot = new WebDataRocks({
                 container: "#wdr-component",
                 toolbar: true,
                 report: {
-                    dataSource: {
-                        data: dataRetrieved
-                    }
+                    dataSource: { 
+                        data: JSON.stringify(x)
                 }
-            });
+             } });
+            
             </script>
     </body>
 </html>

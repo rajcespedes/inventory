@@ -36,18 +36,47 @@ app.use(articuloRoutes);
 
 app.use(pedidoRoutes);
 
-// var convert;
+// Pedido.remove({},(err,res) => console.log('removed'));
+
+var convert = []; 
+// = {
+// 		"Product": "Apple",
+// 		"Price": 2.50
+// 	};
 
 app.get('/report', function(req,res) {
-	Pedido.find({}).populate('articulo').exec( function(err,data) {
-		if(!err){
-			// convert = ;
-			res.render('report', { dataRetrieved: JSON.stringify(data) });
+	// Pedido.find({}).populate('articulo').exec( function(err,data) {
+	// 	if(!err){
+	// 		console.log(convert);
 			
+	// 		res.render('report', { 
+	// 			data: convert
+	// 			// JSON.stringify(data) 
+	// 		});
+			
+	// 	} else {
+	// 		console.log(err);			
+	// 	}
+	// 	});
+
+	Pedido.find({}, function (err,data)  {
+		
+		if(data) {
+			data.forEach( info => convert.push(
+				{
+					cantidad: info['cantidad']
+				}
+
+			) );
+			// convert = [{
+			// 	cantidad: data[0]['cantidad'],
+			// 	fecha: data[0]['fecha']
+			// }];
+			console.log(convert);
+			res.render('report', {dataSent: convert});
 		} else {
-			console.log(err);			
-		}
-		});
+			console.log(err);
+		} 
 	
 	// populate('articulo').exec( function(data,err)
 	// {
@@ -61,6 +90,7 @@ app.get('/report', function(req,res) {
 	// res.render('report');
 	
 
+})
 });
 
 app.use(bodyParser.urlencoded({extende: true}));

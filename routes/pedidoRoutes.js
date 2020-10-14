@@ -56,14 +56,25 @@ router.post('/pedido', function(req,res) {
 		// console.log(accum);
 	}
 
-	Pedido.create({
-		cantidad: cantidad,
-		fecha: actualDate.toLocaleDateString(),
-		total: accum,
-		articulo: element
-	}, 
-	(saved,err) => saved ? console.log(saved) : console.log(err)
-	);
+	for (var i = 0; i < element.length; i++) {
+		Pedido.create({
+			cantidad: cantidad[i],
+			fecha: actualDate.toLocaleDateString(),
+			// total: accum,
+			articulo: element[i]
+		}, 
+		(saved,err) => saved ? console.log(saved) : console.log(err)
+		);	
+	}
+
+	// Pedido.create({
+	// 	cantidad: cantidad,
+	// 	fecha: actualDate.toLocaleDateString(),
+	// 	total: accum,
+	// 	articulo: element
+	// }, 
+	// (saved,err) => saved ? console.log(saved) : console.log(err)
+	// );
 
 	cantidad = [];
 	accum = [];
