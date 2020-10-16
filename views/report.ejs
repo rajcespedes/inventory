@@ -10,20 +10,24 @@
         <script src="https://cdn.webdatarocks.com/latest/webdatarocks.toolbar.min.js"></script>
         <script src="https://cdn.webdatarocks.com/latest/webdatarocks.js"></script>
 
-        <div id="pick" data-test="<%= dataSent %>"></div>
+        <input id="pick" value="<%=dataSent%>" hidden>
+        <h1><%=dataSent%></h1>
         <div id="wdr-component"></div>
         <script>
-            var x = document.getElementById('pick').dataset.test;
-            // console.log(x);
+            var x = [document.getElementById('pick').value];
+            
+            console.log(x);
+            // x = [ { cantidad: 1 }, { cantidad: 2 }, { cantidad: 1 }, { cantidad: 2 } ];
+            // console.log('after ',typeof x);
             var pivot = new WebDataRocks({
                 container: "#wdr-component",
                 toolbar: true,
                 report: {
                     dataSource: { 
-                        data: JSON.stringify(x)
+                        data: x
                 }
              } });
-            
+                
             </script>
     </body>
 </html>
