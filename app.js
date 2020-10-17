@@ -45,14 +45,6 @@ app.get('/report', function(req,res) {
 	Pedido.find({}, function (err,data)  {
 		
 		if(data) {
-			// data.forEach( info => convert.push(
-			// 	{
-			// 		cantidad: info['cantidad']
-			// 	}
-
-			// ) );
-
-			console.log('this is the data received ', data);
 			res.render('report', {dataSent: data});
 		} else {
 			console.log(err);

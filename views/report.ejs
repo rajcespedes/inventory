@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 
+
+
 <html>
     <head>
-        
+        <link href="https://cdn.webdatarocks.com/latest/webdatarocks.min.css" rel="stylesheet"/>
+        <script src="https://cdn.webdatarocks.com/latest/webdatarocks.toolbar.min.js"></script>
+        <script src="https://cdn.webdatarocks.com/latest/webdatarocks.js"></script>        
     </head>
     <body>
 
-        <link href="https://cdn.webdatarocks.com/latest/webdatarocks.min.css" rel="stylesheet"/>
-        <script src="https://cdn.webdatarocks.com/latest/webdatarocks.toolbar.min.js"></script>
-        <script src="https://cdn.webdatarocks.com/latest/webdatarocks.js"></script>
+
 
         <input id="pick" value="<%=dataSent%>" hidden>
-        <h1><%=dataSent%></h1>
         <div id="wdr-component"></div>
         <script>
             var x = [document.getElementById('pick').value];
             
-            console.log(x);
+            console.log(typeof x);
             // x = [ { cantidad: 1 }, { cantidad: 2 }, { cantidad: 1 }, { cantidad: 2 } ];
             // console.log('after ',typeof x);
             var pivot = new WebDataRocks({
