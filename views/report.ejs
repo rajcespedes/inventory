@@ -9,13 +9,9 @@
         <script src="https://cdn.webdatarocks.com/latest/webdatarocks.js"></script>        
     </head>
     <body>
-
-
-
-        <input id="pick" value="<%=dataSent%>" hidden>
         <div id="wdr-component"></div>
-        <script>
-            var x = [document.getElementById('pick').value];
+        <script type="text/javascript">
+            var x = <%-JSON.stringify(dataSent)%>;
             
             console.log(typeof x);
             // x = [ { cantidad: 1 }, { cantidad: 2 }, { cantidad: 1 }, { cantidad: 2 } ];

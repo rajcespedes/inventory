@@ -38,13 +38,22 @@ app.use(pedidoRoutes);
 
 // Pedido.remove({},(err,res) => console.log('removed'));
 
-var convert = []; 
+var convert = {}; 
 
-app.get('/report', function(req,res) {
+app.get('/reporte', function(req,res) {
 
 	Pedido.find({}, function (err,data)  {
 		
 		if(data) {
+			
+			data.forEach( function (item) {
+				convert.id = item._id;
+				convert.cantidad = item.cantidad.forEach( function(i) {return i});
+				// convert.articulo = item.articulo;
+
+			});
+
+			console.log(convert);
 			res.render('report', {dataSent: data});
 		} else {
 			console.log(err);
