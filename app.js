@@ -46,12 +46,13 @@ app.get('/reporte', function(req,res) {
 		
 		if(data) {
 			
-			data.forEach( function (item) {
-				convert.id = item._id;
-				convert.cantidad = item.cantidad.forEach( function(i) {return i});
-				// convert.articulo = item.articulo;
-
-			});
+			for(var i = 0; i < data.length; i++){
+				convert.id = data[0]._id;
+				// console.log(data[i].cantidad);
+				for (var x = 0; x < data[i].cantidad.length; x++) {
+					convert.cantidad = data[i].cantidad[x];	
+				}
+			}
 
 			console.log(convert);
 			res.render('report', {dataSent: data});
