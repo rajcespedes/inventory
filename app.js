@@ -40,6 +40,8 @@ app.use(pedidoRoutes);
 
 var convert = {}; 
 
+var hold = [];
+
 app.get('/reporte', function(req,res) {
 
 	Pedido.find({}, function (err,data)  {
@@ -47,14 +49,19 @@ app.get('/reporte', function(req,res) {
 		if(data) {
 			
 			for(var i = 0; i < data.length; i++){
-				convert.id = data[0]._id;
-				// console.log(data[i].cantidad);
+				
+				
+				// console.log(data[i].cantidad[0]);
 				for (var x = 0; x < data[i].cantidad.length; x++) {
+					convert.id = data[0]._id;
 					convert.cantidad = data[i].cantidad[x];	
+					// console.log(data[i].cantidad[x]);
+					console.log(convert);
+					hold.push(convert);
 				}
 			}
 
-			console.log(convert);
+			console.log(hold);
 			res.render('report', {dataSent: data});
 		} else {
 			console.log(err);
