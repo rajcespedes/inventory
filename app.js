@@ -44,10 +44,10 @@ var hold = [];
 
 app.get('/reporte', function(req,res) {
 
-	Pedido.find({}, function (err,data)  {
+	Pedido.find({}).populate('articulo').populate('producto').exec(function (err,data)  {
 		
 		if(data) {
-			
+			console.log(data);
 			for(var i = 0; i < data.length; i++){
 				
 				
@@ -55,20 +55,24 @@ app.get('/reporte', function(req,res) {
 				for (var x = 0; x < data[i].cantidad.length; x++) {
 					convert.id = data[0]._id;
 					convert.cantidad = data[i].cantidad[x];	
-					// console.log(data[i].cantidad[x]);
-					console.log(convert);
+					convert.articulo = data[i].articulo[x];
+					convert.fecha = data[0].fecha;
 					hold.push(convert);
+					// console.log(convert);
+					// console.log(hold);
+					convert = {};
+					// console.log('this is the result ', hold);
 				}
 			}
 
-			console.log(hold);
-			res.render('report', {dataSent: data});
+			// console.log(hold);
+			res.render('report', {dataSent: hold});
 		} else {
 			console.log(err);
 		} 
 	
 })
-});
+}); 
 
 app.use(bodyParser.urlencoded({extende: true}));
 
