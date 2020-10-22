@@ -7,6 +7,10 @@ var pedidoSchema = new mongoose.Schema({
 	articulo: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Articulo'
+	}],
+	producto: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Producto'
 	}]
 	// cantidad: Number,
 	// fecha: String,
