@@ -44,7 +44,7 @@ var hold = [];
 
 var check;
 
-var x = [];
+var capture = [];
 
 app.get('/reporte', function(req,res) {
 
@@ -53,31 +53,42 @@ app.get('/reporte', function(req,res) {
 		if(data) {
 
 			for(var i = 0; i < data.length; i++){
-				
-				
+								
 
 				for (var x = 0; x < data[i].cantidad.length; x++) {
 					convert.id = data[0]._id;
 					convert.cantidad = data[i].cantidad[x];	
 
 					convert.fecha = data[0].fecha;
+	
+					function articuloDescription(toFind,callback){
+						Articulo.findById(toFind.populate('producto').exec(function(err,found){
+							if(!err) {
+	
+								
+								// return found.producto.descripcion;
+								callback(null,found.producto.descripcion);
+								// console.log(found.producto.descripcion);
+							 } 
+							 else {
+								 console.log(err);
+								 
+							 }
+								  
+						}));
 
-					convert.articulo =
+					}
 
-					Articulo.findById(data[i].articulo[x].toString()).populate('producto').exec(function(err,found){
-						if(!err) {
+					
 
-							return found.producto.descripcion;
-									
-						 } 
-						 else {
-							 console.log(err);
-						 }
-					});
-				
+					articuloDescription(data[i].articulo[x].toString(), () => !err ? return found.producto.descripcion) : console.log(err) );
+
+					//  convert.articulo = x;
+					console.log('what goes now', capture);
+					
 					// convert.id = data[0]._id;
 					// convert.cantidad = data[i].cantidad[x];	
-					// convert.articulo = data[i].articulo[x].toString();
+					// convert.articulo = x;
 					// convert.fecha = data[0].fecha;
 					
 					// convert.articulo = x;
@@ -94,7 +105,7 @@ app.get('/reporte', function(req,res) {
 				}
 			}
 
-			// console.log(hold);
+			// console.log('checking what comes ', x);
 			res.render('report', {dataSent: hold});
 		} else {
 			console.log(err);
