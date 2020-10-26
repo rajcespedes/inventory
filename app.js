@@ -44,7 +44,7 @@ var hold = [];
 
 var check;
 
-var capture = [];
+var capture;
 
 app.get('/reporte', function(req,res) {
 
@@ -61,27 +61,43 @@ app.get('/reporte', function(req,res) {
 
 					convert.fecha = data[0].fecha;
 	
+					// convert.articulo = 
 					function articuloDescription(toFind,callback){
-						Articulo.findById(toFind.populate('producto').exec(function(err,found){
+						// console.log('this is what i captured ', 
+						Articulo.findById(data[i].articulo[x].toString()).populate('producto').exec(function(err,found){
 							if(!err) {
 	
 								
 								// return found.producto.descripcion;
 								callback(null,found.producto.descripcion);
-								// console.log(found.producto.descripcion);
+								console.log(found.producto.descripcion);
+								return found.producto.descripcion;
+								
 							 } 
 							 else {
 								 console.log(err);
 								 
 							 }
 								  
-						}));
+						});
+						
+
 
 					}
 
 					
 
-					articuloDescription(data[i].articulo[x].toString(), () => !err ? return found.producto.descripcion) : console.log(err) );
+					articuloDescription(data[i].articulo[x].toString(), function (err,description) {
+						if(!err) {
+							// capture = 
+							return description;
+							// console.log('what i want ', capture);
+						} else {
+							console.log(err);
+						} 
+					} 
+					);
+					// });
 
 					//  convert.articulo = x;
 					console.log('what goes now', capture);
