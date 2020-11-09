@@ -12,6 +12,7 @@ var Articulo = require('./models/articulo'),
 	Producto = require('./models/producto'),
 	Almacen	= require('./models/almacen'),
 	Pedido = require('./models/pedido');
+	Reporte = require('./models/reporte');
 
 
 mongoose.connect('mongodb://localhost:27017/inventory',{useNewUrlParser: true, useUnifiedTopology: true});
@@ -36,99 +37,11 @@ app.use(articuloRoutes);
 
 app.use(pedidoRoutes);
 
-// Pedido.remove({},(err,res) => console.log('removed'));
-
-var convert = {}; 
-
-var hold = [];
-
-var check;
-
-var capture;
+// Reporte.remove({},(err,worked) => !err ? console.log('removed') : console.log(err) );
 
 app.get('/reporte', function(req,res) {
-
-	Pedido.find({},function (err,data)  {
-		
-		if(data) {
-
-			for(var i = 0; i < data.length; i++){
-								
-
-				for (var x = 0; x < data[i].cantidad.length; x++) {
-					convert.id = data[0]._id;
-					convert.cantidad = data[i].cantidad[x];	
-
-					convert.fecha = data[0].fecha;
-	
-					// convert.articulo = 
-					function articuloDescription(toFind,callback){
-						// console.log('this is what i captured ', 
-						Articulo.findById(data[i].articulo[x].toString()).populate('producto').exec(function(err,found){
-							if(!err) {
-	
-								
-								// return found.producto.descripcion;
-								callback(null,found.producto.descripcion);
-								console.log(found.producto.descripcion);
-								return found.producto.descripcion;
-								
-							 } 
-							 else {
-								 console.log(err);
-								 
-							 }
-								  
-						});
-						
-
-
-					}
-
-					
-
-					articuloDescription(data[i].articulo[x].toString(), function (err,description) {
-						if(!err) {
-							// capture = 
-							return description;
-							// console.log('what i want ', capture);
-						} else {
-							console.log(err);
-						} 
-					} 
-					);
-					// });
-
-					//  convert.articulo = x;
-					console.log('what goes now', capture);
-					
-					// convert.id = data[0]._id;
-					// convert.cantidad = data[i].cantidad[x];	
-					// convert.articulo = x;
-					// convert.fecha = data[0].fecha;
-					
-					// convert.articulo = x;
-
-					// console.log('this is the type ', typeof convert.articulo);
-					
-
-					hold.push(convert);
-					// console.log(x);
-					console.log('at the end ', hold);
-
-					convert = {};
-
-				}
-			}
-
-			// console.log('checking what comes ', x);
-			res.render('report', {dataSent: hold});
-		} else {
-			console.log(err);
-		} 
-	
-})
-}); 
+	Reporte.find({},(err,found) => !err ? res.render('report', {dataSent: found}): console.log(err));
+});
 
 app.use(bodyParser.urlencoded({extende: true}));
 

@@ -14,7 +14,7 @@
 	<div class="container">
 		<div class="form-group row">
 			<label >Producto</label>
-			<select id="toCapture" class="btn btn-outline-secondary dropdown-toggle form-control col-5 dropdown">
+			<select id="toCapture" class="btn btn-outline-secondary dropdown-toggle form-control col-5 dropdown" required>
 				<option>Seleccione...</option>
 				<% articulo.forEach( function(articulo){ %>
 					<option value="<%= articulo.producto.precioVenta %>"> <%= articulo.producto.descripcion %></option>
@@ -23,7 +23,7 @@
 			<label class="mr-1">Precio</label>
 			<input id="precioVenta" disabled>
 			<label  class="mr-1">Cantidad</label>
-			<input id="cantidad" type="text">
+			<input id="cantidad" type="number" required>
 			<i class="fa fa-plus ml-1" aria-hidden="true"></i>
 
 

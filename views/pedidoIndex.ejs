@@ -20,12 +20,12 @@
         <!-- <% var x = []; %> -->
           <tr>
             <td><input type="checkbox" name="pedido" value="<%= articulo[i].id %>"></p></td>
-            <td><%= articulo[i].producto.descripcion %></td>
+            <td> <p id="z<%= articulo[i].id %>"><%= articulo[i].producto.descripcion %></p></td>
             <td> <p id="h<%= articulo[i].id %>" class="cantidadDisponible"><%= articulo[i].cantidad %></p> </td> 
             <td> <p id="q<%=articulo[i]._id%>"><%= articulo[i].producto.precioVenta %></p> </td>
             <td><input id="p<%=articulo[i]._id%>" class="col-3" name="cantidad" type="number" name="pedido" max="<%= articulo[i].cantidad%>"></td>        
           </tr>
-      
+        
 
       <%  } %>
       

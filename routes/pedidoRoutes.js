@@ -4,7 +4,7 @@ const express 		= require('express'),
 		router		= express.Router(),
 		Pedido 		= require('../models/pedido'),
 		Articulo 	= require('../models/articulo'),
-		Producto 	= require('../models/producto');
+		Reporte 	= require('../models/reporte');
 
 
 router.get('/pedido', (req,res) => 
@@ -44,42 +44,45 @@ router.post('/pedido', function(req,res) {
 	
 	);
 
-	// element.forEach( data => Articulo.findById(data, (result,err) => result ? console.log(result) : console.log(err) ));
-
-	// console.log(cantidad);
-	// console.log('price ', req.body.precioHolder);
-
 	for (let i = 0; i < cantidad.length; i++){
-		// console.log(cantidad[i]);
+	
 		accum += cantidad[i] * req.body.precioHolder[i];
-		// console.log(req.body.precioHolder[i]);
-		// console.log(accum);
+	
 	}
-
-	// for (var i = 0; i < element.length; i++) {
-	// 	Pedido.create({
-	// 		cantidad: cantidad[i],
-	// 		fecha: actualDate.toLocaleDateString(),
-	// 		// total: accum,
-	// 		articulo: element[i]
-	// 	}, 
-	// 	(saved,err) => saved ? console.log(saved) : console.log(err)
-	// 	);	
-	// }
 
 	Pedido.create({
 		cantidad: cantidad,
 		fecha: actualDate.toLocaleDateString(),
-		// total: accum,
 		articulo: element
 	}, 
-	(saved,err) => saved ? console.log(saved) : console.log(err)
-	);
-
+	function(err,saved) {
+		if(saved){
+			for (var x = 0; x < saved.cantidad.length; x++) {
+				Reporte.create({
+					articulo: req.body.descripcionHolder[x],
+					id: saved._id,
+					cantidad: cantidad[x],
+					fecha: saved.fecha,
+					precio: req.body.precioHolder[x]
+				}, function(err,passed){
+					if(passed) {
+						console.log('this passed ', passed);
+					} else {
+						console.log(err);
+					}
+				});
+			}
+		} 
+		else {
+			console.log(err);
+		}
+	
 	cantidad = [];
 	accum = [];
 	element = [];
 
-}); 
+});
+
+});
 
 module.exports = router;

@@ -27,15 +27,15 @@
 				<h1>Crear almacén</h1>
 			  <div class="form-group">
 			    <label for="nombre">Nombre</label>
-			    <input id="nombre" type="text" class="form-control" placeholder="Nombre" name="almacen[nombre]">
+			    <input id="nombre" type="text" class="form-control" placeholder="Nombre" name="almacen[nombre]" required>
 			  </div>
   			  <div class="form-group">
 			    <label for="ubicacion">Ubicación</label>
-			    <input id="ubicacion" type="text" class="form-control" placeholder="Calle, No., Sector, Provincia" name="almacen[ubicacion]">
+			    <input id="ubicacion" type="text" class="form-control" placeholder="Calle, No., Sector, Provincia" name="almacen[ubicacion]" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="capacidad">Capacidad</label>
-			    <input id="capacidad" type="text" class="form-control" placeholder="Capacidad" name="almacen[capacidad]">
+			    <input id="capacidad" type="number" class="form-control" placeholder="Capacidad" name="almacen[capacidad]" required>
 			  </div>
 			  <button type="submit" class="btn btn-primary">Guardar</button>
 			</form>

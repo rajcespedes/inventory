@@ -28,7 +28,7 @@
 			  <h1>Crear articulo</h1>
 			  <div class="form-group">
 			  	<label for="almacen">Almacen</label>
-	    	  	<select id="almacen" class="btn btn-outline-secondary dropdown-toggle form-control col-5 dropdown" name="articulo[almacen]">
+	    	  	<select id="almacen" class="btn btn-outline-secondary dropdown-toggle form-control col-5 dropdown" name="articulo[almacen]" required>
 	    	  		<option>Seleccione...</option>
 		    		<% almacen.forEach ( function(almacen) { %>
 		    			<option value="<%= almacen._id %>"><%= almacen.nombre %></option>	
@@ -37,7 +37,7 @@
 			  </div>
 			  <div class="form-group">
 			  	<label for="productoSeleccionado">Producto</label>
-		    	<select id="productoSeleccionado" class="btn btn-outline-secondary dropdown-toggle form-control col-5 dropdown" name="articulo[descripcion]">
+		    	<select id="productoSeleccionado" class="btn btn-outline-secondary dropdown-toggle form-control col-5 dropdown" name="articulo[descripcion]" required>
 		    		<option>Seleccione...</option>
 	    			<% for (var i = 0; i < producto.length; i++) { %>			  			
 		    			<option value="<%=producto[i]._id%>"><%= producto[i]['descripcion'] %></option>
@@ -46,7 +46,7 @@
 			  </div>  			  		  
   			  <div class="form-group">
  			    <label for="cantidad">Cantidad</label>
-			    <input id="cantidad" type="text" class="form-control col-3" name="articulo[cantidad]">
+			    <input id="cantidad" type="text" class="form-control col-3" name="articulo[cantidad]" required>
 			  </div>
 			  <button id="saveBtn" type="submit" class="btn btn-primary mt-3">Guardar</button>  	
 			</form>	
