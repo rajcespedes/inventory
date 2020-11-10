@@ -1,6 +1,6 @@
 const 	express 		= require('express'),
 		app 			= express(),
-		mongoose 		= require('mongoose'),
+		mongoose 		= require('mongoose'), 
 		inventoryRoutes = require('./routes/inventory'),
 		productRoutes 	= require('./routes/productRoutes'),
 		articuloRoutes	= require('./routes/articuloRoutes'),
@@ -15,7 +15,9 @@ var Articulo = require('./models/articulo'),
 	Reporte = require('./models/reporte');
 
 
-mongoose.connect('mongodb://localhost:27017/inventory',{useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://user1:DcWhm9TvMAMcx7Cp@cluster0.wmsar.mongodb.net/Inventory?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true});
+
+// 'mongodb://localhost:27017/inventory' || 
 
 var db = mongoose.connection;
 
@@ -37,7 +39,7 @@ app.use(articuloRoutes);
 
 app.use(pedidoRoutes);
 
-// Reporte.remove({},(err,worked) => !err ? console.log('removed') : console.log(err) );
+// Pedido.remove({},(err,worked) => !err ? console.log('removed') : console.log(err) );
 
 app.get('/reporte', function(req,res) {
 	Reporte.find({},(err,found) => !err ? res.render('report', {dataSent: found}): console.log(err));

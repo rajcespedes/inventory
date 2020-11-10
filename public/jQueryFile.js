@@ -26,6 +26,7 @@ function jQueryFile() {
 			dataHolder.push($(this).val());
 			precioHolder.push($(`#q${$(this).val()}`).text());
 			descripcionHolder.push(($(`#z${$(this).val()}`).text()));
+			disponibleHolder.push($(`#q${$(this).val()}`).text());
 
 		}
 	});
@@ -36,7 +37,7 @@ function jQueryFile() {
 			
 			toCut = $('form').serializeArray();
 
-			$.post('http://localhost:3000/pedido/',{dataHolder, toCut, precioHolder, descripcionHolder},function(data,status){});		
+			$.post('http://localhost:3000/pedido/',{dataHolder, toCut, precioHolder, descripcionHolder, disponibleHolder},function(data,status){});		
 
 		}
 

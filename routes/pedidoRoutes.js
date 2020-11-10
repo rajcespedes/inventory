@@ -1,3 +1,4 @@
+const { update } = require('../models/articulo');
 const articulo = require('../models/articulo');
 
 const express 		= require('express'),
@@ -33,6 +34,8 @@ var accum = 0;
 
 router.post('/pedido', function(req,res) {
 
+	console.log(req.body);
+
 	req.body.toCut.forEach( function (item){
 		if(item.value.length > 10){
 			element.push(item.value);
@@ -66,20 +69,31 @@ router.post('/pedido', function(req,res) {
 					precio: req.body.precioHolder[x]
 				}, function(err,passed){
 					if(passed) {
-						console.log('this passed ', passed);
+						// console.log('this passed ', passed);
 					} else {
 						console.log(err);
 					}
+				});
+				
+				Articulo.findByIdAndUpdate(element[x],{ cantidad: cantidad[x] }, function(err,updated) {
+					if(!err){
+						console.log(update);	
+					} 
+					else {
+						console.log(err);
+						}
 				});
 			}
 		} 
 		else {
 			console.log(err);
 		}
-	
+
 	cantidad = [];
 	accum = [];
 	element = [];
+
+	
 
 });
 
