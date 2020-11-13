@@ -34,7 +34,9 @@ var accum = 0;
 
 router.post('/pedido', function(req,res) {
 
-	console.log(req.body);
+	// console.log(req.body);
+
+	var cantidadLeft;
 
 	req.body.toCut.forEach( function (item){
 		if(item.value.length > 10){
@@ -75,7 +77,9 @@ router.post('/pedido', function(req,res) {
 					}
 				});
 				
-				Articulo.findByIdAndUpdate(element[x],{ cantidad: cantidad[x] }, function(err,updated) {
+				cantidadLeft = (req.body.disponibleHolder[x] - cantidad[x]);
+
+				Articulo.findByIdAndUpdate(element[x],{ cantidad: (req.body.disponibleHolder[x] - cantidad[x]) }, function(err,updated) {
 					if(!err){
 						console.log(update);	
 					} 
@@ -83,7 +87,14 @@ router.post('/pedido', function(req,res) {
 						console.log(err);
 						}
 				});
-			}
+
+				if(cantidadLeft == 0) {
+					Articulo.findByIdAndRemove(element[x], (err,deleted) => deleted ? console.log('deleted') : console.log(err));
+				}
+
+						
+
+			} 
 		} 
 		else {
 			console.log(err);
@@ -96,7 +107,9 @@ router.post('/pedido', function(req,res) {
 	
 
 });
-
+	res.redirect('/pedido');
+	// res.render('pedidoIndex');
+	// location.reload();
 });
 
 module.exports = router;

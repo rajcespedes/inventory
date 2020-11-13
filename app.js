@@ -6,18 +6,18 @@ const 	express 		= require('express'),
 		articuloRoutes	= require('./routes/articuloRoutes'),
 		bodyParser		= require('body-parser'),
 		methodOverride 	= require('method-override'),
-		pedidoRoutes	= require('./routes/pedidoRoutes');
+		pedidoRoutes	= require('./routes/pedidoRoutes'),
+		dotenv			= require('dotenv');
 
 var Articulo = require('./models/articulo'),
 	Producto = require('./models/producto'),
 	Almacen	= require('./models/almacen'),
-	Pedido = require('./models/pedido');
+	Pedido = require('./models/pedido'),
 	Reporte = require('./models/reporte');
 
+dotenv.config();
 
-mongoose.connect('mongodb+srv://user1:DcWhm9TvMAMcx7Cp@cluster0.wmsar.mongodb.net/Inventory?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true});
-
-// 'mongodb://localhost:27017/inventory' || 
+mongoose.connect(process.env.DATABASEURL,{useNewUrlParser: true, useUnifiedTopology: true});
 
 var db = mongoose.connection;
 

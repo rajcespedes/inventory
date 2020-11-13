@@ -26,7 +26,7 @@ function jQueryFile() {
 			dataHolder.push($(this).val());
 			precioHolder.push($(`#q${$(this).val()}`).text());
 			descripcionHolder.push(($(`#z${$(this).val()}`).text()));
-			disponibleHolder.push($(`#q${$(this).val()}`).text());
+			disponibleHolder.push($(`#h${$(this).val()}`).text());
 
 		}
 	});
