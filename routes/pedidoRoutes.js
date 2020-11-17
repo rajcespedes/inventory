@@ -1,5 +1,4 @@
 const { update } = require('../models/articulo');
-const articulo = require('../models/articulo');
 
 const express 		= require('express'),
 		router		= express.Router(),
@@ -69,19 +68,22 @@ router.post('/pedido', function(req,res) {
 					cantidad: cantidad[x],
 					fecha: saved.fecha,
 					precio: req.body.precioHolder[x]
-				}, function(err,passed){
-					if(passed) {
-						// console.log('this passed ', passed);
-					} else {
-						console.log(err);
-					}
-				});
+				}
+				// , function(err,passed){
+				// 	if(passed) {
+				// 		// console.log('this passed ', passed);
+				// 	} else {
+				// 		console.log(err);
+				// 	}
+				// }
+				);
 				
 				cantidadLeft = (req.body.disponibleHolder[x] - cantidad[x]);
 
 				Articulo.findByIdAndUpdate(element[x],{ cantidad: (req.body.disponibleHolder[x] - cantidad[x]) }, function(err,updated) {
 					if(!err){
 						console.log(update);	
+						
 					} 
 					else {
 						console.log(err);
@@ -91,7 +93,7 @@ router.post('/pedido', function(req,res) {
 				if(cantidadLeft == 0) {
 					Articulo.findByIdAndRemove(element[x], (err,deleted) => deleted ? console.log('deleted') : console.log(err));
 				}
-
+				
 						
 
 			} 
@@ -100,16 +102,19 @@ router.post('/pedido', function(req,res) {
 			console.log(err);
 		}
 
+		
 	cantidad = [];
 	accum = [];
 	element = [];
 
-	
+	res.redirect('/');		
 
 });
-	res.redirect('/pedido');
+	// res.redirect('/pedido');
+	
+
 	// res.render('pedidoIndex');
-	// location.reload();
+ 
 });
 
 module.exports = router;

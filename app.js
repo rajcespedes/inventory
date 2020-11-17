@@ -21,6 +21,8 @@ mongoose.connect(process.env.DATABASEURL,{useNewUrlParser: true, useUnifiedTopol
 
 var db = mongoose.connection;
 
+// console.log(process.env.DATABASEURL);yy
+
 db.on('error',console.error.bind(console,'connection error: '));
 
 db.once('open', () => console.log('Connected to DB'));

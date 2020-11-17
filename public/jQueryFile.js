@@ -39,6 +39,8 @@ function jQueryFile() {
 
 			$.post('http://localhost:3000/pedido/',{dataHolder, toCut, precioHolder, descripcionHolder, disponibleHolder},function(data,status){});		
 
+			window.location.href = window.location.href;
+
 		}
 
 	);
