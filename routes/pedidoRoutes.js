@@ -31,9 +31,8 @@ var actualDate = new Date();
 
 var accum = 0;
 
-router.post('/pedido', function(req,res) {
 
-	// console.log(req.body);
+router.post('/pedido', function(req,res) {
 
 	var cantidadLeft;
 
@@ -82,21 +81,27 @@ router.post('/pedido', function(req,res) {
 
 				Articulo.findByIdAndUpdate(element[x],{ cantidad: (req.body.disponibleHolder[x] - cantidad[x]) }, function(err,updated) {
 					if(!err){
-						console.log(update);	
 						
+						console.log('update');	
+						// res.redirect('/');
+							
 					} 
 					else {
 						console.log(err);
+						// res.redirect('/');
 						}
+						// res.redirect('/');
 				});
 
 				if(cantidadLeft == 0) {
 					Articulo.findByIdAndRemove(element[x], (err,deleted) => deleted ? console.log('deleted') : console.log(err));
 				}
 				
+				
 						
 
 			} 
+			
 		} 
 		else {
 			console.log(err);
@@ -107,14 +112,18 @@ router.post('/pedido', function(req,res) {
 	accum = [];
 	element = [];
 
-	res.redirect('/');		
-
+	// refresh(res);
+	// res.send({redirect: '/pedido'});
+	res.redirect(200,'/pedido');
 });
-	// res.redirect('/pedido');
+
 	
 
-	// res.render('pedidoIndex');
- 
 });
+
+// function refresh(run){
+// 	run.redirect('/pedido');
+// 	console.log('got here');
+// }
 
 module.exports = router;

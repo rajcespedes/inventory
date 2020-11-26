@@ -37,9 +37,20 @@ function jQueryFile() {
 			
 			toCut = $('form').serializeArray();
 
-			$.post('http://localhost:3000/pedido/',{dataHolder, toCut, precioHolder, descripcionHolder, disponibleHolder},function(data,status){});		
+			$.post('http://localhost:3000/pedido/',{dataHolder, toCut, precioHolder, descripcionHolder, disponibleHolder},function(data,status){ 
+				$(location).attr('href', '/pedido');					
+				// setTimeout($(location).attr('href', '/pedido'),3000);		
+			});	
+			
+			
+			
 
-			window.location.href = window.location.href;
+			// location.href = 'pedidoIndex.ejs';
+
+
+
+			// window.location.href = window.location.href;
+			
 
 		}
 
