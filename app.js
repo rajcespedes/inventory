@@ -15,13 +15,11 @@ var Articulo = require('./models/articulo'),
 	Pedido = require('./models/pedido'),
 	Reporte = require('./models/reporte');
 
-dotenv.config();b
+dotenv.config();
 
 mongoose.connect(process.env.DATABASEURL,{useNewUrlParser: true, useUnifiedTopology: true});
 
 var db = mongoose.connection;
-
-// console.log(process.env.DATABASEURL);yy
 
 db.on('error',console.error.bind(console,'connection error: '));
 
