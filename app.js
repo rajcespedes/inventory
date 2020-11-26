@@ -15,7 +15,7 @@ var Articulo = require('./models/articulo'),
 	Pedido = require('./models/pedido'),
 	Reporte = require('./models/reporte');
 
-dotenv.config();
+dotenv.config();b
 
 mongoose.connect(process.env.DATABASEURL,{useNewUrlParser: true, useUnifiedTopology: true});
 
