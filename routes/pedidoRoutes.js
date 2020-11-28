@@ -34,6 +34,9 @@ var accum = 0;
 
 router.post('/pedido', function(req,res) {
 
+
+	// console.log(req.body);
+
 	var cantidadLeft;
 
 	req.body.toCut.forEach( function (item){
