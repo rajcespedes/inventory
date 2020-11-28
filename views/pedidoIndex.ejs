@@ -11,7 +11,7 @@
       <th scope="col">Cantidad a seleccionar</th>
     </tr>
   </thead>
-  <form>
+  <form action="/pedido" method="POST">
 
     <!-- <h1><%= articulo.length %></h1> -->
     <tbody>
@@ -19,11 +19,23 @@
        
         <!-- <% var x = []; %> -->
           <tr>
-            <td><input type="checkbox" name="pedido" value="<%= articulo[i].id %>"></p></td>
-            <td> <p id="z<%=articulo[i].id%>"><%= articulo[i].producto.descripcion %></p></td>
-            <td> <p id="h<%=articulo[i].id%>" class="cantidadDisponible"><%= articulo[i].cantidad %></p> </td> 
-            <td> <p id="q<%=articulo[i]._id%>"><%= articulo[i].producto.precioVenta %></p> </td>
-            <td><input id="p<%=articulo[i]._id%>" class="col-3" name="cantidad" type="number" name="pedido" max="<%= articulo[i].cantidad%>"></td>        
+            <td>
+              <input type="checkbox" name="item[pedido]" value="<%= articulo[i].id %>">
+            </td>
+            <td> 
+              <!-- <p id="z<%=articulo[i].id%>"> -->
+               <input value="<%= articulo[i].producto.descripcion %>" name="item[descripcion]" readonly  class="bg-transparent border-0" readonly>  
+              <!-- </p> -->
+            </td>
+            <td> 
+              <input type="text" value="<%= articulo[i].cantidad %>" readonly class="bg-transparent border-0">
+              <!-- <p id="h<%=articulo[i].id%>" class="cantidadDisponible"></p>  -->
+            </td> 
+            <td>
+              <input type="text" value="<%= articulo[i].producto.precioVenta %>" name="item[precio]" readonly class="bg-transparent border-0"> 
+              <!-- <p id="q<%=articulo[i]._id%>"></p>  -->
+            </td>
+            <td><input id="p<%=articulo[i]._id%>" class="col-3" type="number" name="item[cantidad]" max="<%= articulo[i].cantidad%>"></td>        
           </tr>
         
 
@@ -41,4 +53,4 @@
   
 </table>
 
-<script type="text/javascript" src="jQueryFile.js"></script>
+<!-- <script type="text/javascript" src="jQueryFile.js"></script> -->

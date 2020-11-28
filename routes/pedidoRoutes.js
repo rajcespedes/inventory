@@ -35,90 +35,90 @@ var accum = 0;
 router.post('/pedido', function(req,res) {
 
 
-	// console.log(req.body);
+	console.log(req.body);
 
-	var cantidadLeft;
+// 	var cantidadLeft;
 
-	req.body.toCut.forEach( function (item){
-		if(item.value.length > 10){
-			element.push(item.value);
-		} else if(item.value.length != 0) {
-			cantidad.push(item.value);
-		}
+// 	req.body.toCut.forEach( function (item){
+// 		if(item.value.length > 10){
+// 			element.push(item.value);
+// 		} else if(item.value.length != 0) {
+// 			cantidad.push(item.value);
+// 		}
 		
-	}
+// 	}
 	
-	);
+// 	);
 
-	for (let i = 0; i < cantidad.length; i++){
+// 	for (let i = 0; i < cantidad.length; i++){
 	
-		accum += cantidad[i] * req.body.precioHolder[i];
+// 		accum += cantidad[i] * req.body.precioHolder[i];
 	
-	}
+// 	}
 
-	Pedido.create({
-		cantidad: cantidad,
-		fecha: actualDate.toLocaleDateString(),
-		articulo: element
-	}, 
-	function(err,saved) {
-		if(saved){
-			for (var x = 0; x < saved.cantidad.length; x++) {
-				Reporte.create({
-					articulo: req.body.descripcionHolder[x],
-					id: saved._id,
-					cantidad: cantidad[x],
-					fecha: saved.fecha,
-					precio: req.body.precioHolder[x]
-				}
-				// , function(err,passed){
-				// 	if(passed) {
-				// 		// console.log('this passed ', passed);
-				// 	} else {
-				// 		console.log(err);
-				// 	}
-				// }
-				);
+// 	Pedido.create({
+// 		cantidad: cantidad,
+// 		fecha: actualDate.toLocaleDateString(),
+// 		articulo: element
+// 	}, 
+// 	function(err,saved) {
+// 		if(saved){
+// 			for (var x = 0; x < saved.cantidad.length; x++) {
+// 				Reporte.create({
+// 					articulo: req.body.descripcionHolder[x],
+// 					id: saved._id,
+// 					cantidad: cantidad[x],
+// 					fecha: saved.fecha,
+// 					precio: req.body.precioHolder[x]
+// 				}
+// 				// , function(err,passed){
+// 				// 	if(passed) {
+// 				// 		// console.log('this passed ', passed);
+// 				// 	} else {
+// 				// 		console.log(err);
+// 				// 	}
+// 				// }
+// 				);
 				
-				cantidadLeft = (req.body.disponibleHolder[x] - cantidad[x]);
+// 				cantidadLeft = (req.body.disponibleHolder[x] - cantidad[x]);
 
-				Articulo.findByIdAndUpdate(element[x],{ cantidad: (req.body.disponibleHolder[x] - cantidad[x]) }, function(err,updated) {
-					if(!err){
+// 				Articulo.findByIdAndUpdate(element[x],{ cantidad: (req.body.disponibleHolder[x] - cantidad[x]) }, function(err,updated) {
+// 					if(!err){
 						
-						console.log('update');	
-						// res.redirect('/');
+// 						console.log('update');	
+// 						// res.redirect('/');
 							
-					} 
-					else {
-						console.log(err);
-						// res.redirect('/');
-						}
-						// res.redirect('/');
-				});
+// 					} 
+// 					else {
+// 						console.log(err);
+// 						// res.redirect('/');
+// 						}
+// 						// res.redirect('/');
+// 				});
 
-				if(cantidadLeft == 0) {
-					Articulo.findByIdAndRemove(element[x], (err,deleted) => deleted ? console.log('deleted') : console.log(err));
-				}
+// 				if(cantidadLeft == 0) {
+// 					Articulo.findByIdAndRemove(element[x], (err,deleted) => deleted ? console.log('deleted') : console.log(err));
+// 				}
 				
 				
 						
 
-			} 
+// 			} 
 			
-		} 
-		else {
-			console.log(err);
-		}
+// 		} 
+// 		else {
+// 			console.log(err);
+// 		}
 
 		
-	cantidad = [];
-	accum = [];
-	element = [];
+// 	cantidad = [];
+// 	accum = [];
+// 	element = [];
 
-	// refresh(res);
-	// res.send({redirect: '/pedido'});
-	res.redirect(200,'/pedido');
-});
+// 	// refresh(res);
+// 	// res.send({redirect: '/pedido'});
+// 	res.redirect(200,'/pedido');
+// });
 
 	
 
