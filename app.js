@@ -17,7 +17,7 @@ var Articulo = require('./models/articulo'),
 
 dotenv.config();
 
-app.use(express.static('public'));
+
 
 mongoose.connect(process.env.DATABASEURL,{useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -31,10 +31,9 @@ app.listen(process.env.PORT || 3000, process.env.IP);
 
 app.set('view engine','ejs');
 
-
+app.use(express.static('public'));
 
 // app.use(express.static(path.join(__dirname, '../public')));
-
 
 app.use(inventoryRoutes);
 
