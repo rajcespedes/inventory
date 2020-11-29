@@ -23,19 +23,53 @@ router.get('/pedido/new',(req,res) =>
 
 );
 
-var cantidad = [];
+var toSend = {};
+
+var item = [];
 
 var element = [];
 
 var actualDate = new Date();
 
-var accum = 0;
+// var accum = 0;
 
 
 router.post('/pedido', function(req,res) {
 
 
-	console.log(req.body);
+	console.log(req.body.item);
+
+	for (var x = 0; x < req.body.item.cantidad.length; x++) {
+		if(req.body.item.cantidad[x] == ''){
+			console.log('empty value');
+		} else {
+			if(req.body.item.pedido.length == 24){
+				// console.log(req.body.item.pedido);
+				toSend.pedido = req.body.item.pedido;
+				
+			} else {
+				// console.log(req.body.item.pedido[x]);
+				toSend.pedido = req.body.item.pedido[x];
+			}
+			// console.log(req.body.item.cantidad[x]);
+			toSend.cantidad = req.body.item.cantidad[x];
+			// console.log(req.body.item.precio[x]);
+			toSend.precio = req.body.item.precio[x];
+			// console.log(req.body.item.descripcion[x]);
+			toSend.descripcion = req.body.item.descripcion[x];
+		}
+		Pedido.create(toSend,function(err,created){
+			if(!err){
+				console.log('created');
+				
+			} else {
+				console.log(err);
+			}
+			
+		});
+		// res.redirect('/pedido');
+	}
+	// console.log(toSend);
 
 // 	var cantidadLeft;
 
