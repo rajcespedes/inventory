@@ -23,9 +23,14 @@ router.get('/pedido/new',(req,res) =>
 
 );
 
-var toSend = {};
+var toSend = {
+	cantidad: [],
+	articulo: []
+};
 
-var item = [];
+var item = {
+	pedido: []
+};
 
 var element = [];
 
@@ -36,41 +41,61 @@ var actualDate = new Date();
 
 router.post('/pedido', function(req,res) {
 
-
 	console.log(req.body.item);
 
 	for (var x = 0; x < req.body.item.cantidad.length; x++) {
 		if(req.body.item.cantidad[x] == ''){
-			console.log('empty value');
+			console.log('empty');
+		// 	item.pedido.push(req.body.item.pedido);
 		} else {
 			if(req.body.item.pedido.length == 24){
-				// console.log(req.body.item.pedido);
+				// console.log('first block', req.body.item.pedido.length);
 				toSend.pedido = req.body.item.pedido;
-				
+				toSend.descripcion = req.body.item.descripcion[req.body.item.cantidad.indexOf(req.body.item.cantidad[x])];
+				toSend.cantidad = req.body.item.cantidad[req.body.item.cantidad.indexOf(req.body.item.cantidad[x])];
+				// console.log('index Of ',req.body.item.cantidad.indexOf(req.body.item.cantidad[x]));
+				// toSend.cantidad = req.body.item.cantidad[x];
+				// toSend.cantidad = req.body.item.
+				item.pedido.push(req.body.item.pedido);
 			} else {
+				// for (var x = 0; x < req.body.item.cantidad.length; x++) {
+					item.pedido.push(req.body.item.pedido[x]);
+					toSend.pedido = req.body.item.pedido[x];
+					toSend.cantidad.push(req.body.item.cantidad[x]);
+					toSend.precio = req.body.item.precio[x];
+					toSend.descripcion = req.body.item.descripcion[x];
+				}
+				// console.log('second block', req.body.item.pedido.length);
 				// console.log(req.body.item.pedido[x]);
-				toSend.pedido = req.body.item.pedido[x];
+				
+				// item.pedido.push(req.body.item.pedido);
 			}
 			// console.log(req.body.item.cantidad[x]);
-			toSend.cantidad = req.body.item.cantidad[x];
-			// console.log(req.body.item.precio[x]);
-			toSend.precio = req.body.item.precio[x];
-			// console.log(req.body.item.descripcion[x]);
-			toSend.descripcion = req.body.item.descripcion[x];
-		}
-		Pedido.create(toSend,function(err,created){
-			if(!err){
-				console.log('created');
-				
-			} else {
-				console.log(err);
-			}
 			
-		});
+			// console.log(req.body.item.precio[x]);
+			
+			// console.log(req.body.item.descripcion[x]);
+			
+		// }
+		// Pedido.create(toSend,function(err,created){
+		// 	if(!err){
+		// 		console.log('created');
+				
+		// 	} else {
+		// 		console.log(err);
+		// 	}
+			
+		// });
 		// res.redirect('/pedido');
-	}
+	// }
 	// console.log(toSend);
+	console.log(item);
+	console.log(toSend);
+	item.pedido = [];
+	console.log(item);
+	toSend.cantidad = [];
 
+// }
 // 	var cantidadLeft;
 
 // 	req.body.toCut.forEach( function (item){
@@ -80,7 +105,7 @@ router.post('/pedido', function(req,res) {
 // 			cantidad.push(item.value);
 // 		}
 		
-// 	}
+	}
 	
 // 	);
 
