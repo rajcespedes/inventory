@@ -36,12 +36,12 @@ var element = [];
 
 var actualDate = new Date();
 
-// var accum = 0;
+var accum = 0;
 
 
 router.post('/pedido', function(req,res) {
 
-	console.log(req.body.item);
+	console.log('incoming info ', req.body.item);
 
 	for (var x = 0; x < req.body.item.cantidad.length; x++) {
 		if(req.body.item.cantidad[x] == ''){
@@ -50,9 +50,10 @@ router.post('/pedido', function(req,res) {
 		} else {
 			if(req.body.item.pedido.length == 24){
 				// console.log('first block', req.body.item.pedido.length);
-				toSend.pedido = req.body.item.pedido;
+				toSend.articulo = req.body.item.pedido;
 				toSend.descripcion = req.body.item.descripcion[req.body.item.cantidad.indexOf(req.body.item.cantidad[x])];
 				toSend.cantidad = req.body.item.cantidad[req.body.item.cantidad.indexOf(req.body.item.cantidad[x])];
+				toSend.actualDate = actualDate.toLocaleDateString();
 				// console.log('index Of ',req.body.item.cantidad.indexOf(req.body.item.cantidad[x]));
 				// toSend.cantidad = req.body.item.cantidad[x];
 				// toSend.cantidad = req.body.item.
@@ -60,16 +61,28 @@ router.post('/pedido', function(req,res) {
 			} else {
 				// for (var x = 0; x < req.body.item.cantidad.length; x++) {
 					item.pedido.push(req.body.item.pedido[x]);
-					toSend.pedido = req.body.item.pedido[x];
+					// toSend.pedido = req.body.item.pedido[x];
 					toSend.cantidad.push(req.body.item.cantidad[x]);
-					toSend.precio = req.body.item.precio[x];
-					toSend.descripcion = req.body.item.descripcion[x];
+					toSend.articulo.push(req.body.item.pedido[x]);
+					// toSend.precio = req.body.item.precio[x];
+					toSend.actualDate = actualDate.toLocaleDateString();
+					// console.log(req.body.item);
+					// toSend.descripcion = req.body.item.descripcion[x];
+					accum += toSend.cantidad[x] * req.body.item.precio[x];
+					
+
+
 				}
 				// console.log('second block', req.body.item.pedido.length);
 				// console.log(req.body.item.pedido[x]);
 				
 				// item.pedido.push(req.body.item.pedido);
 			}
+			// for(var x = 0; x < toSend.cantidad.length; x++){
+			// 	accum += toSend.cantidad[x] * req.body.item.precio[x];
+			// }
+
+			toSend.total = accum;
 			// console.log(req.body.item.cantidad[x]);
 			
 			// console.log(req.body.item.precio[x]);
@@ -89,11 +102,11 @@ router.post('/pedido', function(req,res) {
 		// res.redirect('/pedido');
 	// }
 	// console.log(toSend);
-	console.log(item);
-	console.log(toSend);
-	item.pedido = [];
-	console.log(item);
-	toSend.cantidad = [];
+	console.log('to the report ', item);
+	console.log('to the model ',toSend);
+	// item.pedido = [];
+	// console.log(item);
+	// toSend.cantidad = [];
 
 // }
 // 	var cantidadLeft;
@@ -106,14 +119,22 @@ router.post('/pedido', function(req,res) {
 // 		}
 		
 	}
+	// item.pedido = [];
+	toSend = {
+		cantidad: [],
+		articulo: []
+	};
 	
+	item = {
+		pedido: []
+	};
 // 	);
 
 // 	for (let i = 0; i < cantidad.length; i++){
 	
 // 		accum += cantidad[i] * req.body.precioHolder[i];
 	
-// 	}
+// 	} 
 
 // 	Pedido.create({
 // 		cantidad: cantidad,
