@@ -1,4 +1,4 @@
-const { update } = require('../models/articulo');
+// const { update } = require('../models/articulo');
 
 const express 		= require('express'),
 		router		= express.Router(),
@@ -33,7 +33,7 @@ var item = {
 	// pedido: []
 };
 
-var element = [];
+var beforeReportDate;
 
 var actualDate = new Date();
 
@@ -42,7 +42,7 @@ var accum = 0;
 
 router.post('/pedido', function(req,res) {
 
-	console.log('incoming info ', req.body.item);
+	// console.log('incoming info ', req.body.item);
 
 	for (var x = 0; x < req.body.item.cantidad.length; x++) {
 		if(req.body.item.cantidad[x] == ''){
@@ -59,6 +59,8 @@ router.post('/pedido', function(req,res) {
 				// toSend.cantidad = req.body.item.cantidad[x];
 				// toSend.cantidad = req.body.item.
 				//item.pedido.push(req.body.item.pedido);
+				accum += toSend.cantidad * req.body.item.precio[x];
+				// console.log(toSend.cantidad);
 				
 			} else {
 				// for (var x = 0; x < req.body.item.cantidad.length; x++) {
@@ -107,21 +109,7 @@ router.post('/pedido', function(req,res) {
 	// console.log('to the report ', item);
 	// console.log('to the model ',toSend);
 
-	Pedido.create(toSend,function(err,dataSent) {
-		if(!err){
-			// console.log(dataSent);
-			for (var x = 0; x < toSend.articulo.length; x++) {
-				item.id = dataSent._id,
-				item.cantidad = dataSent.cantidad[x],
-				item.fecha = dataSent.fecha,
-				item.articulo = dataSent.articulo[x]
-			}
-			console.log('before sending to report ',item);
-			// Reporte.create();
-		} else {
-			console.log(err);
-		}
-	});
+
 
 
 
@@ -139,7 +127,55 @@ router.post('/pedido', function(req,res) {
 // 			cantidad.push(item.value);
 // 		}
 	// toSend.total = 0;	
+
+			
+
 	}
+
+	console.log('outside loop ' , toSend);
+
+	Pedido.create(toSend,function(err,dataSent) {
+		if(!err){
+			// console.log(dataSent);
+			for (var x = 0; x < dataSent.cantidad.length; x++) {
+				item.articulo = dataSent.articulo[x];
+				item.id = dataSent._id;
+				item.cantidad = dataSent.cantidad[x];
+				item.fecha = dataSent.fecha;
+				// console.log(typeof dataSent.fecha);
+				item.precio = parseInt(req.body.item.precio[x]);
+				
+				// console.log('before sending to report ',item);
+
+				// console.log('toUpdate ', req.body.item.disponible[x] - item.cantidad);
+
+				Articulo.findOneAndUpdate(item.articulo,{cantidad: req.body.item.disponible[x] - item.cantidad }, function(err,toUpdate){
+					if (!err) {
+						if((req.body.item.disponible[x] - item.cantidad) == 0){
+							console.log('must delete');
+						}
+						
+					} else {
+
+					}
+				});
+
+				Reporte.create(item, function(err,toReport){
+					if(!err){
+						console.log(toReport);
+						
+						// res.redirect('/pedido');
+					} else {
+						console.log(err);
+					}
+				});
+			}
+			res.redirect('/pedido');
+			
+		} else {
+			console.log(err);
+		}
+	});
 
 	
 
@@ -152,7 +188,7 @@ router.post('/pedido', function(req,res) {
 	};
 	
 	item = {
-		pedido: []
+		// pedido: []
 	};
 // 	);
 
