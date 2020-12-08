@@ -7,13 +7,18 @@ const express 		= require('express'),
 		Reporte 	= require('../models/reporte');
 
 
-router.get('/pedido', (req,res) => 
+router.get('/pedido', function(req,res) {
 
-	Articulo.find({}).populate('almacen').populate('producto').exec( (err,found) => 
-	
-	!err ? res.render('pedidoIndex',{ articulo: found }) : console.log(err) ) 
+	Articulo.find({}).populate('almacen').populate('producto').exec( function(err,found) {
+		if(!err){
+			// console.log(found);
+			res.render('pedidoIndex',{ articulo: found });
+		} else {
+			console.log(err)
+		}
+	}	
 
-);
+)});
 
 router.get('/pedido/new',(req,res) => 
 
@@ -33,7 +38,7 @@ var item = {
 	// pedido: []
 };
 
-var beforeReportDate;
+var available;
 
 var actualDate = new Date();
 
@@ -59,6 +64,8 @@ router.post('/pedido', function(req,res) {
 				// toSend.cantidad = req.body.item.cantidad[x];
 				// toSend.cantidad = req.body.item.
 				//item.pedido.push(req.body.item.pedido);
+				console.log(req.body.item.disponible[x]);
+				available = req.body.item.disponible[x];
 				accum += toSend.cantidad * req.body.item.precio[x];
 				// console.log(toSend.cantidad);
 				
@@ -73,7 +80,7 @@ router.post('/pedido', function(req,res) {
 					// console.log(req.body.item);
 					// toSend.descripcion = req.body.item.descripcion[x];
 					accum += toSend.cantidad[x] * req.body.item.precio[x];
-					
+					available = req.body.item.disponible[x];
 
 
 				}
@@ -132,43 +139,56 @@ router.post('/pedido', function(req,res) {
 
 	}
 
-	console.log('outside loop ' , toSend);
+	// console.log('outside loop ' , toSend);
 
 	Pedido.create(toSend,function(err,dataSent) {
 		if(!err){
-			// console.log(dataSent);
+			console.log('incoming ', req.body.item);
 			for (var x = 0; x < dataSent.cantidad.length; x++) {
 				item.articulo = dataSent.articulo[x];
 				item.id = dataSent._id;
 				item.cantidad = dataSent.cantidad[x];
 				item.fecha = dataSent.fecha;
-				// console.log(typeof dataSent.fecha);
+				// available = req.body.item.disponible[x];
 				item.precio = parseInt(req.body.item.precio[x]);
 				
 				// console.log('before sending to report ',item);
 
-				// console.log('toUpdate ', req.body.item.disponible[x] - item.cantidad);
+				// console.log('toUpdate ', req.body.item.disponible[x] - item.cantidagit pushd);
 
-				Articulo.findOneAndUpdate(item.articulo,{cantidad: req.body.item.disponible[x] - item.cantidad }, function(err,toUpdate){
+
+				// console.log('this comes within ',	available, 'this comes after ',  item.cantidad, 'the result is ', (available - item.cantidad));
+
+
+				Articulo.findByIdAndUpdate(item.articulo,{ cantidad: ( available - item.cantidad ) }, function(err,toUpdate){
 					if (!err) {
-						if((req.body.item.disponible[x] - item.cantidad) == 0){
-							console.log('must delete');
+						console.log('first value ', available);
+						console.log('second value ', item.cantidad);
+						console.log('this was sent ', toUpdate);
+						if((available - item.cantidad) == 0){
+							Articulo.findByIdAndRemove(toUpdate._id, function(err){
+								if(!err) {
+									console.log('deleted');
+								}
+							});
 						}
-						
+						// available = 0;
+						// item.cantidad = 0;
 					} else {
-
+						console.log(err);
 					}
 				});
 
 				Reporte.create(item, function(err,toReport){
 					if(!err){
-						console.log(toReport);
+						// console.log(toReport);
 						
 						// res.redirect('/pedido');
 					} else {
 						console.log(err);
 					}
 				});
+				// item.cantidad = 0;
 			}
 			res.redirect('/pedido');
 			
