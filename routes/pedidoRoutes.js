@@ -38,7 +38,7 @@ var item = {
 	// pedido: []
 };
 
-var available;
+var available = [];
 
 var actualDate = new Date();
 
@@ -64,14 +64,27 @@ router.post('/pedido', function(req,res) {
 				// toSend.cantidad = req.body.item.cantidad[x];
 				// toSend.cantidad = req.body.item.
 				//item.pedido.push(req.body.item.pedido);
-				console.log(req.body.item.disponible[x]);
-				available = req.body.item.disponible[x];
+				// if(){
+					// console.log('disponible ', req.body.item);
+					for(var y = 0; y < req.body.item.cantidad.length; y++) {
+						
+						if(req.body.item.cantidad[y] != '') {
+							available.push(req.body.item.disponible[y]);		
+							// console.log('lap ', y)	
+							console.log('incoming availability ', available);
+						}
+					}
+				
+				
+				// }
+				
+				
 				accum += toSend.cantidad * req.body.item.precio[x];
 				// console.log(toSend.cantidad);
 				
 			} else {
 				// for (var x = 0; x < req.body.item.cantidad.length; x++) {
-					// item.pedido.push(req.body.item.pedido[x]);
+					// item.pedido.push(req.body.item.pedido[x]);	
 					// toSend.pedido = req.body.item.pedido[x];
 					toSend.cantidad.push(req.body.item.cantidad[x]);
 					toSend.articulo.push(req.body.item.pedido[x]);
@@ -80,7 +93,7 @@ router.post('/pedido', function(req,res) {
 					// console.log(req.body.item);
 					// toSend.descripcion = req.body.item.descripcion[x];
 					accum += toSend.cantidad[x] * req.body.item.precio[x];
-					available = req.body.item.disponible[x];
+					// available = req.body.item.disponible[x];
 
 
 				}
@@ -160,24 +173,25 @@ router.post('/pedido', function(req,res) {
 				// console.log('this comes within ',	available, 'this comes after ',  item.cantidad, 'the result is ', (available - item.cantidad));
 
 
-				Articulo.findByIdAndUpdate(item.articulo,{ cantidad: ( available - item.cantidad ) }, function(err,toUpdate){
-					if (!err) {
-						console.log('first value ', available);
-						console.log('second value ', item.cantidad);
-						console.log('this was sent ', toUpdate);
-						if((available - item.cantidad) == 0){
-							Articulo.findByIdAndRemove(toUpdate._id, function(err){
-								if(!err) {
-									console.log('deleted');
-								}
-							});
-						}
-						// available = 0;
-						// item.cantidad = 0;
-					} else {
-						console.log(err);
-					}
-				});
+				// Articulo.findByIdAndUpdate(item.articulo,{ cantidad: ( available - item.cantidad ) }, function(err,toUpdate){
+				// 	if (!err) {
+				// 		console.log('first value ', available);
+				// 		console.log('second value ', item.cantidad);
+				// 		console.log('this was sent ', toUpdate);
+				// 		if((available - item.cantidad) == 0){
+				// 			Articulo.findByIdAndRemove(toUpdate._id, function(err){
+				// 				if(!err) {
+				// 					console.log('deleted');
+				// 				}
+				// 			});
+				// 		}
+				// 		// available = 0;
+				// 		// item.cantidad = 0;
+				// 	} else {
+				// 		console.log(err);
+				// 	}
+				// });
+				available = [];
 
 				Reporte.create(item, function(err,toReport){
 					if(!err){
