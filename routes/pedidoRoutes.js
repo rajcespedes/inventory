@@ -18,7 +18,10 @@ router.get('/pedido', function(req,res) {
 		}
 	}	
 
-)});
+)}); 
+
+
+
 
 router.get('/pedido/new',(req,res) => 
 
